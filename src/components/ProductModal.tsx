@@ -20,9 +20,10 @@ export default function ProductModal({ open, onClose }: ProductModalProps) {
       PaperProps={{
         sx: {
           bgcolor: "#1E1E1E",
-          borderRadius: 3,
+          borderRadius: 30,
           position: "relative",
           overflow: "visible",
+          width: "90%",
         },
       }}
     >

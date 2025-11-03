@@ -61,9 +61,8 @@ export default function ProblemModal() {
           left: "50%",
           transform: "translate(-50%, -50%)",
           bgcolor: "#2D2D2D",
-          borderRadius: "16px",
           p: 3,
-          width: "400px",
+          width: "90%",
           color: "white",
           boxShadow: 24,
           maxHeight: "90vh",
@@ -83,6 +82,7 @@ export default function ProblemModal() {
             color: "#B5B5B5",
             "&:hover": { color: "white" },
           }}
+          onClick={handleSubmit}
         >
           <CloseIcon />
         </IconButton>

@@ -63,7 +63,7 @@ export default function LoginPage() {
         px: 2,
       }}
     >
-      <Box sx={{ mb: 6, mt: 6 }}>
+      <Box sx={{ mb: 6, mt: 2 }}>
         <img src="/logoo.svg" alt="Logo" width={127} height={148} />
       </Box>
 
