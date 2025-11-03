@@ -26,13 +26,13 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   // RUS raqami validatsiyasi (+7XXXXXXXXXX)
-  const validatePhone = (value) => {
+  const validatePhone = (value: string) => {
     const cleaned = value.replace(/\D/g, ""); // faqat raqamlar
     const isValid = /^7\d{10}$/.test(cleaned);
     setIsPhoneValid(isValid);
   };
 
-  const handlePhoneChange = (e) => {
+  const handlePhoneChange = (e: any) => {
     const value = e.target.value;
     setPhone(value);
     validatePhone(value);
