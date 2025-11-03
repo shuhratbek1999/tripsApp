@@ -9,6 +9,7 @@ import {
   Modal,
   IconButton,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -73,7 +74,18 @@ export default function ProblemModal() {
         <Typography variant="h6" fontWeight={700}>
           Проблема с товаром
         </Typography>
-
+        {/* Close tugmasi */}
+        <IconButton
+          sx={{
+            position: "absolute",
+            top: 10,
+            right: 10,
+            color: "#B5B5B5",
+            "&:hover": { color: "white" },
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
         <Typography sx={{ mt: 1.5, color: "#B5B5B5", fontSize: "14px" }}>
           Очень жаль что вы столкнулись с какой-то проблемой. Опишите,
           пожалуйста, что произошло и прикрепите фото товара и его этикетки.

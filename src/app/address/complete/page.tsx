@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import ProductModal from "@/app/new-product/page";
+import ProductModal from "@/components/ProductModal";
 
 const CompletedAddressPage = () => {
   const router = useRouter();

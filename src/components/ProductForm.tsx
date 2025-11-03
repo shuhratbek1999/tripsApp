@@ -1,5 +1,7 @@
 "use client";
-
+interface ProductFormProps {
+  onClose?: () => void; // ← shu qatorni qo‘sh
+}
 import { Box, Typography, Button, Stack, IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -15,7 +17,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import LabeledInput from "./LabeledInput";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-export default function ProductForm() {
+export default function ProductForm({ onClose }: ProductFormProps) {
   const dispatch = useDispatch();
   const router = useRouter();
   const product = useSelector((state: RootState) => state.product);
@@ -25,6 +27,7 @@ export default function ProductForm() {
     value: string
   ) => {
     dispatch(updateField({ key, value }));
+    onClose?.();
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
