@@ -1,7 +1,24 @@
-import type { NextConfig } from "next";
+// next.config.js
+const path = require("path");
 
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.watchOptions = {
+        ignored: [
+          path.resolve("C:\\pagefile.sys"),
+          "**/node_modules/**",
+          "**/.next/**",
+          "**/out/**",
+        ],
+      };
+    }
+
+    config.resolve.fallback = { fs: false };
+    return config;
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

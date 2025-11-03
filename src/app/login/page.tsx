@@ -177,7 +177,7 @@ export default function LoginPage() {
           }
           onClick={showPasswordInput ? handleLogin : handleContinue}
         >
-          {showPasswordInput ? "Войти" : "Продолжить"}
+          {showPasswordInput ? "Продолжить" : "Продолжить"}
         </Button>
 
         {/* Pastdagi qism har doim ko‘rinadi */}
