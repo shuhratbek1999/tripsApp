@@ -3,6 +3,7 @@
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import GlobalAlert from "@/components/GlobalAlert";
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <GlobalAlert />
         {children}
       </ThemeProvider>
     </Provider>

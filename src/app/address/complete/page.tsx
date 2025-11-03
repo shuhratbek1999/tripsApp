@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ProductModal from "@/app/new-product/page";
 
 const CompletedAddressPage = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const CompletedAddressPage = () => {
 
   // 🔹 Collapse uchun local holat
   const [openId, setOpenId] = useState<number | null>(null);
-
+  const [open, setOpen] = useState(false);
   const toggleCollapse = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
@@ -41,6 +42,7 @@ const CompletedAddressPage = () => {
         flexDirection: "column",
       }}
     >
+      <ProductModal open={open} onClose={() => setOpen(false)} />
       {/* Logo */}
       <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
         <img src="/logo-trips.svg" alt="Logo trips" />
@@ -109,6 +111,7 @@ const CompletedAddressPage = () => {
             textTransform: "none",
             py: 1,
           }}
+          onClick={() => setOpen(true)}
         >
           Новый товар
         </Button>

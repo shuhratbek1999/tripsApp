@@ -20,13 +20,15 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import { updateProductStatus } from "@/redux/tripSlice";
-
+import ProductModal from "@/app/new-product/page";
+import { showAlert } from "@/redux/alertSlice";
 const PhoneDetailsPage = () => {
   const { id } = useParams();
   const [checked, setChecked] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const [openId, setOpenId] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
   const [checkedIds, setCheckedIds] = useState<number[]>([]);
   const trip = useSelector((state: RootState) => state.trips.trips[0]);
 
@@ -36,14 +38,12 @@ const PhoneDetailsPage = () => {
     .find((a) => a.id === Number(id));
 
   if (!address) return <Typography sx={{ p: 2 }}>Адрес не найден</Typography>;
-  const handleToggle = (id: number) => {
-    setOpenId(openId === id ? null : id);
-  };
 
   const handleCheck = (id: number) => {
     setCheckedIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
+    dispatch(showAlert({ message: "Спасибо за получение!", type: "success" }));
   };
   return (
     <Box sx={{ width: "100%", borderRadius: 2, p: 2, color: "#fff" }}>
@@ -110,6 +110,7 @@ const PhoneDetailsPage = () => {
           textTransform: "none",
           mb: 2,
         }}
+        onClick={() => setOpen(true)}
       >
         Новый товар
       </Button>
@@ -160,12 +161,20 @@ const PhoneDetailsPage = () => {
                     : p.status === "Не получил"
                     ? "#E74C3C"
                     : "#7C69F4",
-                px: 1,
+                px: `5px`,
                 py: 0.3,
-                borderRadius: 2,
+                borderRadius: "30px",
               }}
             >
-              <Typography sx={{ fontSize: 12 }}>{p.status}</Typography>
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  width: "80px",
+                  textAlign: "center",
+                }}
+              >
+                {p.status}
+              </Typography>
             </Box>
             <KeyboardArrowDownIcon
               sx={{
@@ -217,6 +226,9 @@ const PhoneDetailsPage = () => {
                       status: "Не получил",
                     })
                   );
+                  dispatch(
+                    showAlert({ message: "Не получил!", type: "error" })
+                  );
                 }}
               >
                 Не получил
@@ -238,6 +250,9 @@ const PhoneDetailsPage = () => {
                       productId: p.id,
                       status: "Получен",
                     })
+                  );
+                  dispatch(
+                    showAlert({ message: "Получил !", type: "success" })
                   );
                 }}
               >
@@ -263,6 +278,9 @@ const PhoneDetailsPage = () => {
                     status: "Не получил",
                   })
                 );
+                dispatch(
+                  showAlert({ message: "Не получил !", type: "warning" })
+                );
               }}
             >
               Не определил
@@ -270,6 +288,7 @@ const PhoneDetailsPage = () => {
           </Collapse>
         </Box>
       ))}
+      <ProductModal open={open} onClose={() => setOpen(false)} />
     </Box>
   );
 };

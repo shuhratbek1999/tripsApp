@@ -17,14 +17,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import ProductModal from "@/app/new-product/page";
+import ProblemModal from "@/components/ProblemModal";
+import { openProblemModal } from "@/redux/problemSlice";
+import { useDispatch } from "react-redux";
 const AddressDataPage = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const trip = useSelector((state: RootState) => state.trips.trips[0]);
   const addresses = trip.details[0].addresses;
 
   const [openId, setOpenId] = useState<number | null>(null);
-
+  const [open, setOpen] = useState(false);
+  const [problemOpen, setProblemOpen] = useState(false);
   const handleToggle = (id: number) => {
     setOpenId(openId === id ? null : id);
   };
@@ -102,6 +107,7 @@ const AddressDataPage = () => {
             borderRadius: "10px",
             textTransform: "none",
           }}
+          onClick={() => setOpen(true)}
         >
           Новый товар
         </Button>
@@ -114,6 +120,7 @@ const AddressDataPage = () => {
             borderRadius: "10px",
             textTransform: "none",
           }}
+          onClick={() => dispatch(openProblemModal())}
         >
           Выгрузить данные
         </Button>
@@ -216,6 +223,8 @@ const AddressDataPage = () => {
           </Collapse>
         </Box>
       ))}
+      <ProductModal open={open} onClose={() => setOpen(false)} />
+      <ProblemModal />
     </Box>
   );
 };
