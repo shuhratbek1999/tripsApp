@@ -1,0 +1,25 @@
+{
+  /* <Checkbox
+                checked={checkedIds.includes(item.id)}
+                onClick={(e) => e.stopPropagation()} // collapse ishlamasin
+                onChange={() => handleCheck(item.id)}
+                sx={{
+                  color: "#7C69F4",
+                  "&.Mui-checked": { color: "#7C69F4" },
+                  p: 0,
+                }}
+              />
+
+               const [openId, setOpenId] = useState<number | null>(null);
+                const [checkedIds, setCheckedIds] = useState<number[]>([]);
+              
+                const handleToggle = (id: number) => {
+                  setOpenId(openId === id ? null : id);
+                };
+              
+                const handleCheck = (id: number) => {
+                  setCheckedIds((prev) =>
+                    prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+                  );
+                }; */
+}
