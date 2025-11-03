@@ -42,21 +42,17 @@ const CompletedAddressPage = () => {
       }}
     >
       {/* Logo */}
-      <Box sx={{ mb: 2 }}>
-        <Typography
-          variant="subtitle1"
-          sx={{ fontWeight: 700, color: "#B34EF1", lineHeight: 1 }}
-        >
-          бери
-        </Typography>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          выкупай
-        </Typography>
+      <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
+        <img src="/logo-trips.svg" alt="Logo trips" />
       </Box>
 
       {/* Address */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-        <ArrowBackIosNewIcon fontSize="small" sx={{ color: "#fff" }} />
+        <ArrowBackIosNewIcon
+          fontSize="small"
+          sx={{ color: "#fff" }}
+          onClick={() => router.back()}
+        />
         <Typography sx={{ fontWeight: 500 }}>
           {cluster.addresses[0].address}
         </Typography>
@@ -66,13 +62,12 @@ const CompletedAddressPage = () => {
       <TextField
         placeholder="Найти номер"
         fullWidth
-        variant="outlined"
+        size="small"
         InputProps={{
           sx: {
-            borderRadius: 2,
             backgroundColor: "#FDF2F2",
-            color: "silver",
-            "& input::placeholder": { color: "#aaa" },
+            color: "#A9B7BD",
+            borderRadius: 1,
           },
           endAdornment: (
             <InputAdornment position="end">
@@ -80,7 +75,7 @@ const CompletedAddressPage = () => {
             </InputAdornment>
           ),
         }}
-        sx={{ mb: 1.5 }}
+        sx={{ mb: 2 }}
       />
 
       {/* Select */}

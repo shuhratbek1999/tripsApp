@@ -37,7 +37,7 @@ export default function ZakazPage() {
   }
 
   return (
-    <Box sx={{ bgcolor: "#121212", minHeight: "100vh", color: "white", p: 2 }}>
+    <Box sx={{ bgcolor: "#121212", minHeight: "100vh", p: 2 }}>
       {/* LOGO */}
       <Box sx={{ mb: 2 }}>
         <Typography sx={{ color: "#7C69F4", fontWeight: 700, fontSize: 20 }}>
@@ -68,20 +68,20 @@ export default function ZakazPage() {
       <TextField
         fullWidth
         placeholder="Найти ПВЗ или КЛСТР"
-        variant="outlined"
-        sx={{
-          backgroundColor: "#FDF2F2",
-          color: "red",
-          borderRadius: 1,
-          mb: 1.5,
-        }}
+        size="small"
         InputProps={{
+          sx: {
+            backgroundColor: "#FDF2F2",
+            color: "#A9B7BD",
+            borderRadius: 1,
+          },
           endAdornment: (
             <InputAdornment position="end">
               <SearchIcon sx={{ color: "#7C69F4" }} />
             </InputAdornment>
           ),
         }}
+        sx={{ mb: 2 }}
       />
 
       {/* COPY ADDRESSES */}

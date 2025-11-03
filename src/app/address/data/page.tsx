@@ -39,21 +39,17 @@ const AddressDataPage = () => {
       }}
     >
       {/* Header */}
-      <Box sx={{ mb: 2 }}>
-        <Typography
-          variant="subtitle1"
-          sx={{ fontWeight: 700, color: "#B34EF1", lineHeight: 1 }}
-        >
-          бери
-        </Typography>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          выкупай
-        </Typography>
+      <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
+        <img src="/logo-trips.svg" alt="Logo trips" />
       </Box>
 
       {/* Back */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-        <ArrowBackIosNewIcon fontSize="small" sx={{ color: "#fff" }} />
+        <ArrowBackIosNewIcon
+          fontSize="small"
+          sx={{ color: "#fff" }}
+          onClick={() => router.back()}
+        />
         <Typography>Ул Пушкина колотушкина д2 ст 55</Typography>
       </Box>
 

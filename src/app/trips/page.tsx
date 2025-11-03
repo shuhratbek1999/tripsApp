@@ -12,7 +12,7 @@ export default function TripsPage() {
   return (
     <Box sx={{ minHeight: "100vh", p: 2, bgcolor: "#121212" }}>
       {/* Logo */}
-      <Box sx={{ width: "100%", mb: 2 }}>
+      <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
         <img src="/logo-trips.svg" alt="Logo trips" />
       </Box>
 

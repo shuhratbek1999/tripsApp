@@ -158,11 +158,11 @@ export default function TripItem({
             mt: 2,
             display: "flex",
             alignItems: "center",
+            justifyContent: "space-between",
+            width: "80%",
           }}
         >
-          <Typography variant="caption" sx={{ mx: 1 }}>
-            ID выезда
-          </Typography>
+          <Typography variant="caption">ID выезда</Typography>
           <Typography
             variant="h6"
             sx={{
@@ -172,7 +172,7 @@ export default function TripItem({
               alignItems: "center",
             }}
           >
-            {id}
+            ID выезда
             <ContentCopyIcon
               sx={{
                 color: "#7C69F4",
@@ -185,24 +185,84 @@ export default function TripItem({
 
         {/* Umumiy statistikalar */}
         <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5, mt: 1 }}>
-          <Typography variant="caption" color="#A9B7BD">
-            Кол-во адресов: {total.numbers_adress}
-          </Typography>
-          <Typography variant="caption" color="#A9B7BD">
-            Кол-во товаров: {total.number_products}
-          </Typography>
-          <Typography variant="caption" color="#A9B7BD">
-            Получено: {total.accepted}
-          </Typography>
-          <Typography variant="caption" color="#A9B7BD">
-            Осталось получить: {total.rest}
-          </Typography>
-          <Typography variant="caption" color="#A9B7BD">
-            Не получил: {total.getnot}
-          </Typography>
-          <Typography variant="caption" color="#A9B7BD">
-            Передал на склад: {total.delivered_count}
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <Typography variant="caption" color="#A9B7BD">
+              Кол-во адресов:
+            </Typography>
+            <Typography>{total.numbers_adress}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <Typography variant="caption" color="#A9B7BD">
+              Кол-во товаров:
+            </Typography>
+            <Typography>{total.number_products}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <Typography variant="caption" color="#A9B7BD">
+              Получено:
+            </Typography>
+            <Typography>{total.accepted}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <Typography variant="caption" color="#A9B7BD">
+              Осталось получить:
+            </Typography>
+            <Typography>{total.rest}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <Typography variant="caption" color="#A9B7BD">
+              Не получил:
+            </Typography>
+            <Typography>{total.getnot}</Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "80%",
+            }}
+          >
+            <Typography variant="caption" color="#A9B7BD">
+              Передал на склад:
+            </Typography>
+            <Typography>{total.delivered_count}</Typography>
+          </Box>
         </Box>
 
         {/* Pastdagi tugmalar */}

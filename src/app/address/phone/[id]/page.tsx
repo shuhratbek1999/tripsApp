@@ -48,16 +48,8 @@ const PhoneDetailsPage = () => {
   return (
     <Box sx={{ width: "100%", borderRadius: 2, p: 2, color: "#fff" }}>
       {/* Header */}
-      <Box sx={{ mb: 2 }}>
-        <Typography
-          variant="subtitle1"
-          sx={{ fontWeight: 700, color: "#B34EF1", lineHeight: 1 }}
-        >
-          бери
-        </Typography>
-        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-          выкупай
-        </Typography>
+      <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
+        <img src="/logo-trips.svg" alt="Logo trips" />
       </Box>
 
       {/* Back */}
@@ -74,10 +66,13 @@ const PhoneDetailsPage = () => {
       <TextField
         placeholder="Найти артикул/баркод"
         fullWidth
-        variant="outlined"
         size="small"
         InputProps={{
-          sx: { backgroundColor: "#FDF2F2", color: "#A9B7BD", borderRadius: 1 },
+          sx: {
+            backgroundColor: "#FDF2F2",
+            color: "#A9B7BD",
+            borderRadius: 1,
+          },
           endAdornment: (
             <InputAdornment position="end">
               <SearchIcon sx={{ color: "#7C69F4" }} />
