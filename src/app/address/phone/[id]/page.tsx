@@ -20,7 +20,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
 import { updateProductStatus } from "@/redux/tripSlice";
-import ProductModal from "@/app/new-product/page";
+import ProductModal from "@/components/ProductModal";
 import { showAlert } from "@/redux/alertSlice";
 const PhoneDetailsPage = () => {
   const { id } = useParams();
