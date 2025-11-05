@@ -145,8 +145,8 @@ export default function ZakazPage() {
                       : "#7C69F4",
                     transform: isClusterOpen ? "rotate(180deg)" : "rotate(0)",
                     transition: "0.3s",
-                    fontSize: "42px",
                   }}
+                  fontSize="large"
                 />
               </Box>
 
@@ -213,8 +213,8 @@ export default function ZakazPage() {
                               ? "rotate(180deg)"
                               : "rotate(0deg)",
                             transition: "0.3s",
-                            fontSize: "42px",
                           }}
+                          fontSize="large"
                         />
                         {allReceived}
                       </Box>
