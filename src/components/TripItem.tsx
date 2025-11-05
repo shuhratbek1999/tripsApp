@@ -127,7 +127,6 @@ export default function TripItem({
         }}
       >
         <Typography
-          variant="h6"
           color="white"
           sx={{
             fontSize: "16px",
@@ -138,14 +137,15 @@ export default function TripItem({
           {date_time}
         </Typography>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
           <Button
-            variant="contained"
             sx={{
               bgcolor: step == 1 ? "#FFAE00" : "#4C84EC",
               borderRadius: "30px",
               textTransform: "none",
-              color: "white",
+              color: "#FDF2F2",
+              width: "150px",
+              height: "30px",
             }}
           >
             {getStep()}
@@ -349,7 +349,7 @@ export default function TripItem({
               color: "#FDF2F2",
               height: "45px",
               py: "12px",
-              width: "50%",
+              width: "190px",
             }}
             onClick={(e) => {
               e.stopPropagation();

@@ -60,7 +60,7 @@ export default function ProblemModal() {
           transform: "translate(-50%, -50%)",
           bgcolor: "#2D2D2D",
           p: 3,
-          width: "90%",
+          width: "95%",
           color: "white",
           boxShadow: 24,
           maxHeight: "90vh",

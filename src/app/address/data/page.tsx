@@ -160,16 +160,17 @@ const AddressDataPage = () => {
             >
               {item.phone}
             </Typography>
-            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 0.5,
                   backgroundColor: item.rest === 0 ? "#2ECC71" : "#E74C3C",
-                  px: 1,
                   py: 0.3,
+                  px: 0.5,
                   borderRadius: 30,
+                  height: "30px",
+                  width: "90%",
                 }}
               >
                 <Typography
@@ -179,12 +180,12 @@ const AddressDataPage = () => {
                 </Typography>
               </Box>
               <KeyboardArrowDownIcon
+                fontSize="large"
                 sx={{
                   transform:
                     openId === item.id ? "rotate(180deg)" : "rotate(0deg)",
                   transition: "0.3s",
                   color: "#7C69F4",
-                  fontSize: "42px",
                 }}
               />
             </Box>
