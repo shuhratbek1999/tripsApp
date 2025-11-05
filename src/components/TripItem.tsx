@@ -155,8 +155,8 @@ export default function TripItem({
               color: "#7C69F4",
               transform: open ? "rotate(180deg)" : "rotate(0deg)",
               transition: "0.3s",
-              fontSize: "42px",
             }}
+            fontSize="large"
           />
         </Box>
       </Box>
