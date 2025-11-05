@@ -173,9 +173,9 @@ export default function LoginPage() {
                       edge="end"
                     >
                       {showPassword ? (
-                        <VisibilityOff sx={{ color: "#7C69F4" }} />
-                      ) : (
                         <Visibility sx={{ color: "#7C69F4" }} />
+                      ) : (
+                        <VisibilityOff sx={{ color: "#7C69F4" }} />
                       )}
                     </IconButton>
                   </InputAdornment>
