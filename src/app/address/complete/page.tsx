@@ -40,6 +40,8 @@ const CompletedAddressPage = () => {
         p: 2,
         display: "flex",
         flexDirection: "column",
+        position: "relative",
+        height: "100vh",
       }}
     >
       <ProductModal open={open} onClose={() => setOpen(false)} />
@@ -51,11 +53,13 @@ const CompletedAddressPage = () => {
       {/* Address */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
         <ArrowBackIosNewIcon
-          fontSize="small"
-          sx={{ color: "#fff" }}
+          fontSize="large"
+          sx={{ color: "#7C69F4", ml: -1 }}
           onClick={() => router.back()}
         />
-        <Typography sx={{ fontWeight: 500 }}>
+        <Typography
+          sx={{ fontWeight: 700, color: "#FDF2F2", fontSize: "16px" }}
+        >
           {cluster.addresses[0].address}
         </Typography>
       </Box>
@@ -69,7 +73,8 @@ const CompletedAddressPage = () => {
           sx: {
             backgroundColor: "#FDF2F2",
             color: "#A9B7BD",
-            borderRadius: 1,
+            borderRadius: "10px",
+            height: "48px",
           },
           endAdornment: (
             <InputAdornment position="end">
@@ -87,9 +92,9 @@ const CompletedAddressPage = () => {
         fullWidth
         InputProps={{
           sx: {
-            borderRadius: 2,
-            backgroundColor: "#2A2A2A",
-            color: "#fff",
+            borderRadius: "10px",
+            backgroundColor: "#424242",
+            color: "#A9B7BD",
           },
         }}
         sx={{ mb: 2 }}
@@ -99,31 +104,32 @@ const CompletedAddressPage = () => {
         <MenuItem value="Получено">Получено</MenuItem>
       </TextField>
 
-      {/* Buttons */}
       <Box sx={{ display: "flex", gap: 1, mb: 2 }}>
         <Button
-          fullWidth
           sx={{
-            backgroundColor: "#FFA800",
-            color: "#FFFF",
-            fontWeight: 600,
+            backgroundColor: "#FFB800",
+            color: "#FDF2F2",
+            fontWeight: 500,
             borderRadius: "10px",
             textTransform: "none",
-            py: 1,
+            fontSize: "16px",
+            height: "45px",
+            width: "40%",
           }}
           onClick={() => setOpen(true)}
         >
           Новый товар
         </Button>
         <Button
-          fullWidth
           sx={{
-            backgroundColor: "#6C63FF",
-            color: "#fff",
-            fontWeight: 600,
+            backgroundColor: "#7A5FFF",
+            color: "#FDF2F2",
+            fontWeight: 500,
             borderRadius: "10px",
             textTransform: "none",
-            py: 1,
+            fontSize: "16px",
+            height: "45px",
+            width: "60%",
           }}
         >
           Выгрузить данные
@@ -155,9 +161,10 @@ const CompletedAddressPage = () => {
               <Typography
                 sx={{
                   backgroundColor: addr.rest > 0 ? "#FF4D4F" : "#00C853",
-                  color: "#fff",
-                  fontSize: 12,
-                  borderRadius: 1,
+                  color: "#FDF2F2",
+                  fontSize: "16px",
+                  borderRadius: "30px",
+                  fontWeight: 400,
                   px: 1,
                   py: 0.3,
                 }}
@@ -166,52 +173,72 @@ const CompletedAddressPage = () => {
               </Typography>
               {openId === addr.id ? (
                 <KeyboardArrowUpIcon
-                  sx={{ color: addr.rest > 0 ? "#FFBABA" : "#8EFFA1" }}
+                  sx={{
+                    color: addr.rest > 0 ? "#7C69F4" : "#7C69F4",
+                  }}
+                  fontSize="large"
                 />
               ) : (
                 <KeyboardArrowDownIcon
-                  sx={{ color: addr.rest > 0 ? "#FFBABA" : "#8EFFA1" }}
+                  sx={{
+                    color: addr.rest > 0 ? "#7C69F4" : "#7C69F4",
+                  }}
+                  fontSize="large"
                 />
               )}
             </Box>
           </Box>
 
           {/* Collapse content */}
-          <Collapse in={openId === addr.id}>
+          <Collapse in={openId === addr.id} timeout="auto" unmountOnExit>
             <Box
               sx={{
-                backgroundColor: "#1E1E1E",
+                bgcolor: "#2D2D2D",
                 borderRadius: "0 0 12px 12px",
-                p: 1.5,
-                mt: 0.3,
+                mt: -1,
+                p: 1,
               }}
             >
-              <Typography sx={{ fontSize: 13 }}>
-                Кол-во товаров: {addr.number_products}
-              </Typography>
-              <Typography sx={{ fontSize: 13 }}>
-                Кол-во выданных товаров: {addr.accepted}
-              </Typography>
-              <Typography sx={{ fontSize: 13 }}>
-                Кол-во товаров с кодами: {addr.numbers_adress}
-              </Typography>
-              <Typography sx={{ fontSize: 13 }}>
-                Кол-во получено: {addr.delivered_count}
-              </Typography>
-              <Typography sx={{ fontSize: 13 }}>
-                Осталось получить: {addr.rest}
-              </Typography>
+              {[
+                ["Кол-во адресов:", addr.numbers_adress],
+                ["Кол-во товаров:", addr.number_products],
+                ["Кол-во принятых:", addr.accepted],
+                ["Кол-во доставлено:", addr.delivered_count],
+                ["Осталось получить:", addr.rest],
+              ].map(([label, value]) => (
+                <Box
+                  key={label}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "80%",
+                    my: 1,
+                  }}
+                >
+                  <Typography
+                    sx={{ fontSize: "14px", color: "#A9B7BD", fontWeight: 500 }}
+                  >
+                    {label}
+                  </Typography>
+                  <Typography
+                    sx={{ fontSize: "14px", color: "#A9B7BD", fontWeight: 600 }}
+                  >
+                    {value}
+                  </Typography>
+                </Box>
+              ))}
 
               <Button
-                fullWidth
                 sx={{
-                  backgroundColor: "#B34EF1",
-                  color: "#fff",
-                  fontWeight: 600,
-                  borderRadius: 1.5,
+                  mt: 1.5,
+                  backgroundColor: "#7A5FFF",
+                  color: "#FDF2F2",
+                  fontWeight: 500,
+                  borderRadius: "10px",
                   textTransform: "none",
-                  py: 1,
-                  mt: 1,
+                  height: "45px",
+                  width: "100%",
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -227,15 +254,18 @@ const CompletedAddressPage = () => {
 
       {/* Bottom button */}
       <Button
-        fullWidth
         sx={{
-          backgroundColor: "#B34EF1",
+          backgroundColor: "#CB30E0",
           color: "#fff",
           fontWeight: 600,
-          borderRadius: 1.5,
+          height: "45px",
+          borderRadius: "10px",
           textTransform: "none",
           py: 1.2,
-          mt: 2,
+          position: "absolute",
+          bottom: "50px",
+          ml: 0.5,
+          width: "90%",
         }}
         onClick={() => router.push("/trips")}
       >

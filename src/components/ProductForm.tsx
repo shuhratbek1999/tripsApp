@@ -27,7 +27,6 @@ export default function ProductForm({ onClose }: ProductFormProps) {
     value: string
   ) => {
     dispatch(updateField({ key, value }));
-    onClose?.();
   };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +48,7 @@ export default function ProductForm({ onClose }: ProductFormProps) {
     console.log("🟣 Yangi tovar:", product);
     dispatch(clearProduct());
     router.back();
+    onClose?.();
   };
 
   return (
@@ -58,21 +58,22 @@ export default function ProductForm({ onClose }: ProductFormProps) {
         p: 3,
         overflowY: "scroll",
         height: "880px",
+        borderRadius: "20px 20px 0 0",
       }}
     >
-      <Typography color="white" fontWeight={700} fontSize="20px" mb={1}>
+      <Typography color="#FDF2F2" fontWeight={600} fontSize="24px" mb={1}>
         Новый товар
       </Typography>
 
-      <Typography color="#A9B7BD" fontSize="14px" mb={3}>
+      <Typography color="#FDF2F2" fontWeight={500} fontSize="16px" mb={2}>
         Очень жаль что вы столкнулись с какой-то проблемой опишите, пожалуйста
         что произошло и прикрепите фото товара и его этикетки, как правильно
         сделать написанно в вопросе если он есть, если вам его не выдают, то
         просто опишите информацию
       </Typography>
       <Typography
-        color="white"
-        fontWeight={600}
+        color="#FDF2F2"
+        fontWeight={700}
         mb={1}
         sx={{ display: "flex", alignItems: "center", gap: 1 }}
       >
@@ -80,6 +81,11 @@ export default function ProductForm({ onClose }: ProductFormProps) {
         <HelpOutlineIcon sx={{ color: "##DCDCDC", fontSize: 20 }} />
       </Typography>
 
+      <Typography
+        sx={{ fontWeight: 500, fontSize: "16px", color: "#A9B7BD", mb: 1 }}
+      >
+        Фото товара
+      </Typography>
       <Stack direction="row" spacing={1} flexWrap="wrap" mb={3}>
         {/* mavjud rasmlar preview */}
         {product.photos.map((photo, index) => (
@@ -122,17 +128,16 @@ export default function ProductForm({ onClose }: ProductFormProps) {
               width: 90,
               height: 90,
               borderRadius: 2,
-              border: "2px dashed #555",
+              border: "none",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
               color: "#7C69F4",
               "&:hover": { borderColor: "#7C69F4" },
+              bgcolor: "#1B1A2033",
             }}
-          >
-            <AddPhotoAlternateIcon fontSize="large" />
-          </Box>
+          ></Box>
           <input
             id="file-upload"
             type="file"
@@ -153,37 +158,54 @@ export default function ProductForm({ onClose }: ProductFormProps) {
         <HelpOutlineIcon sx={{ color: "#DCDCDC", fontSize: 20 }} />
       </Typography>
 
-      <Stack spacing={1.5}>
+      <Stack spacing={0.5}>
+        <Typography
+          sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+        >
+          Баркод
+        </Typography>
         <LabeledInput
-          label="Баркод"
           placeholder="Введите баркод товара"
           value={product.barcode}
           onChange={(val) => handleChange("barcode", val)}
           withScanner
         />
-
+        <Typography
+          sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+        >
+          Артикул
+        </Typography>
         <LabeledInput
-          label="Артикул"
           placeholder="Введите артикул товара"
           value={product.article}
           onChange={(val) => handleChange("article", val)}
         />
-
+        <Typography
+          sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+        >
+          Название
+        </Typography>
         <LabeledInput
-          label="Название"
           placeholder="Введите бренд товара"
           value={product.name}
           onChange={(val) => handleChange("name", val)}
         />
+        <Typography
+          sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+        >
+          Адрес
+        </Typography>
         <LabeledInput
-          label="Адрес"
           placeholder="Введите бренд товара"
           value={product.barcode}
           onChange={(val) => handleChange("barcode", val)}
         />
-
+        <Typography
+          sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+        >
+          Номер телефона
+        </Typography>
         <LabeledInput
-          label="Номер телефона"
           placeholder="Введите бренд товара"
           value={product.article}
           onChange={(val) => handleChange("article", val)}

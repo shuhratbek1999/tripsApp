@@ -55,11 +55,15 @@ const PhoneDetailsPage = () => {
       {/* Back */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
         <ArrowBackIosNewIcon
-          fontSize="small"
-          sx={{ color: "#fff", cursor: "pointer" }}
+          fontSize="large"
+          sx={{ color: "#7C69F4", ml: -1 }}
           onClick={() => router.back()}
         />
-        <Typography>{address.phone}</Typography>
+        <Typography
+          sx={{ fontSize: "16px", fontWeight: 700, color: "#FDF2F2" }}
+        >
+          {address.phone}
+        </Typography>
       </Box>
 
       {/* Search */}
@@ -71,7 +75,8 @@ const PhoneDetailsPage = () => {
           sx: {
             backgroundColor: "#FDF2F2",
             color: "#A9B7BD",
-            borderRadius: 1,
+            borderRadius: "10px",
+            height: "48px",
           },
           endAdornment: (
             <InputAdornment position="end">
@@ -86,12 +91,12 @@ const PhoneDetailsPage = () => {
       <Select
         fullWidth
         defaultValue="Все"
-        size="small"
         sx={{
-          backgroundColor: "#2A2A2A",
-          color: "#fff",
+          backgroundColor: "#424242",
+          color: "#A9B7BD",
           mb: 2,
-          borderRadius: 1,
+          borderRadius: "10px",
+          height: "48px",
         }}
       >
         <MenuItem value="Все">Все</MenuItem>
@@ -101,14 +106,16 @@ const PhoneDetailsPage = () => {
 
       {/* Buttons */}
       <Button
-        fullWidth
         sx={{
           backgroundColor: "#FFB800",
-          color: "#fff",
-          fontWeight: 600,
+          color: "#FDF2F2",
+          fontWeight: 500,
           borderRadius: "10px",
           textTransform: "none",
+          height: "45px",
           mb: 2,
+          fontSize: "16px",
+          width: "100%",
         }}
         onClick={() => setOpen(true)}
       >
@@ -181,6 +188,7 @@ const PhoneDetailsPage = () => {
                 color: "#7C69F4",
                 transform: openId === p.id ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "0.3s",
+                fontSize: "42px",
               }}
             />
           </Box>
@@ -194,12 +202,12 @@ const PhoneDetailsPage = () => {
                 <Image
                   src={p.image}
                   alt={p.title}
-                  width={60}
-                  height={60}
-                  style={{ borderRadius: 8 }}
+                  width={85}
+                  height={85}
+                  style={{ borderRadius: 10 }}
                 />
               )}
-              <Box sx={{ fontSize: 13, color: "#aaa" }}>
+              <Box sx={{ fontSize: 12, color: "#A9B7BD", fontWeight: 400 }}>
                 {p.code && <Typography>Код: {p.code}</Typography>}
                 <Typography>Артикул: {p.article}</Typography>
                 <Typography>Баркод: {p.barcode}</Typography>
@@ -207,87 +215,158 @@ const PhoneDetailsPage = () => {
             </Box>
 
             {/* Buttons */}
-            <Box sx={{ display: "flex", gap: 1, mt: 1.5 }}>
-              <Button
-                fullWidth
-                sx={{
-                  backgroundColor: "#E74C3C",
-                  color: "#fff",
-                  fontWeight: 600,
-                  textTransform: "none",
-                  borderRadius: "10px",
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  dispatch(
-                    updateProductStatus({
-                      addressId: address.id,
-                      productId: p.id,
-                      status: "Не получил",
-                    })
-                  );
-                  dispatch(
-                    showAlert({ message: "Не получил!", type: "error" })
-                  );
-                }}
-              >
-                Не получил
-              </Button>
-              <Button
-                fullWidth
-                sx={{
-                  backgroundColor: "#2ECC71",
-                  color: "#fff",
-                  fontWeight: 600,
-                  textTransform: "none",
-                  borderRadius: "10px",
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  dispatch(
-                    updateProductStatus({
-                      addressId: address.id,
-                      productId: p.id,
-                      status: "Получен",
-                    })
-                  );
-                  dispatch(
-                    showAlert({ message: "Получил !", type: "success" })
-                  );
-                }}
-              >
-                Получил
-              </Button>
-            </Box>
-            <Button
-              fullWidth
-              sx={{
-                mt: 1,
-                backgroundColor: "#FFA800",
-                color: "#FFFF",
-                fontWeight: 600,
-                textTransform: "none",
-                borderRadius: "10px",
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                dispatch(
-                  updateProductStatus({
-                    addressId: address.id,
-                    productId: p.id,
-                    status: "Не получил",
-                  })
-                );
-                dispatch(
-                  showAlert({ message: "Не получил !", type: "warning" })
-                );
-              }}
-            >
-              Не определил
-            </Button>
+            {checkedIds.length === 0 && (
+              <>
+                <Box sx={{ display: "flex", gap: 1, mt: 1.5 }}>
+                  <Button
+                    fullWidth
+                    sx={{
+                      backgroundColor: "#EB5757",
+                      color: "#FDF2F2",
+                      fontWeight: 500,
+                      textTransform: "none",
+                      borderRadius: "10px",
+                      height: "45px",
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dispatch(
+                        updateProductStatus({
+                          addressId: address.id,
+                          productId: p.id,
+                          status: "Не получил",
+                        })
+                      );
+                      dispatch(
+                        showAlert({ message: "Не получил!", type: "error" })
+                      );
+                    }}
+                  >
+                    Не получил
+                  </Button>
+
+                  <Button
+                    fullWidth
+                    sx={{
+                      backgroundColor: "#34C759",
+                      color: "#FDF2F2",
+                      fontWeight: 500,
+                      textTransform: "none",
+                      borderRadius: "10px",
+                      height: "45px",
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dispatch(
+                        updateProductStatus({
+                          addressId: address.id,
+                          productId: p.id,
+                          status: "Получен",
+                        })
+                      );
+                      dispatch(
+                        showAlert({ message: "Получил!", type: "success" })
+                      );
+                    }}
+                  >
+                    Получил
+                  </Button>
+                </Box>
+
+                <Button
+                  fullWidth
+                  sx={{
+                    mt: 1,
+                    backgroundColor: "#FFAE00",
+                    color: "#FDF2F2",
+                    fontWeight: 500,
+                    textTransform: "none",
+                    borderRadius: "10px",
+                    height: "45px",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(
+                      updateProductStatus({
+                        addressId: address.id,
+                        productId: p.id,
+                        status: "Не получил",
+                      })
+                    );
+                    dispatch(
+                      showAlert({ message: "Не определил!", type: "warning" })
+                    );
+                  }}
+                >
+                  Не определил
+                </Button>
+              </>
+            )}
           </Collapse>
         </Box>
       ))}
+      {checkedIds.length !== 0 && (
+        <>
+          <Box sx={{ display: "flex", gap: 1, mt: 1.5 }}>
+            <Button
+              fullWidth
+              sx={{
+                backgroundColor: "#EB5757",
+                color: "#FDF2F2",
+                fontWeight: 500,
+                textTransform: "none",
+                borderRadius: "10px",
+                height: "45px",
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(showAlert({ message: "Не получил!", type: "error" }));
+              }}
+            >
+              Не получил
+            </Button>
+
+            <Button
+              fullWidth
+              sx={{
+                backgroundColor: "#34C759",
+                color: "#FDF2F2",
+                fontWeight: 500,
+                textTransform: "none",
+                borderRadius: "10px",
+                height: "45px",
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(showAlert({ message: "Получил!", type: "success" }));
+              }}
+            >
+              Получил
+            </Button>
+          </Box>
+
+          <Button
+            fullWidth
+            sx={{
+              mt: 1,
+              backgroundColor: "#FFAE00",
+              color: "#FDF2F2",
+              fontWeight: 500,
+              textTransform: "none",
+              borderRadius: "10px",
+              height: "45px",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(
+                showAlert({ message: "Не определил!", type: "warning" })
+              );
+            }}
+          >
+            Не определил
+          </Button>
+        </>
+      )}
       <ProductModal open={open} onClose={() => setOpen(false)} />
     </Box>
   );

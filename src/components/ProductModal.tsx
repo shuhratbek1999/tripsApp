@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
-import { Dialog, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { Dialog } from "@mui/material";
 import ProductForm from "@/components/ProductForm";
 
 interface ProductModalProps {
@@ -27,20 +25,6 @@ export default function ProductModal({ open, onClose }: ProductModalProps) {
         },
       }}
     >
-      {/* Close tugmasi */}
-      <IconButton
-        onClick={onClose}
-        sx={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          color: "#B5B5B5",
-          "&:hover": { color: "white" },
-        }}
-      >
-        <CloseIcon />
-      </IconButton>
-
       {/* ProductForm ichiga onClose uzatamiz */}
       <ProductForm onClose={onClose} />
     </Dialog>

@@ -6,14 +6,19 @@ export default function PhotoHintLabelInfo() {
   return (
     <Box
       sx={{
-        bgcolor: "#1E1E1E",
-        borderRadius: 2,
-        p: 2,
+        bgcolor: "#424242",
+        borderRadius: "10px",
+        p: "12px",
         mt: 2,
-        border: "1px solid #333",
       }}
     >
-      <Typography color="#A9B7BD" fontSize="14px" mb={1.5} lineHeight="20px">
+      <Typography
+        color="#FDF2F2"
+        fontSize="14px"
+        fontWeight={500}
+        mb={1.5}
+        lineHeight="20px"
+      >
         Обычно, на этикетке к товару есть информация, по которой мы можем
         идентифицировать товар. Пожалуйста, внимательно изучите этикетку и
         выпишите максимально доступную информацию.

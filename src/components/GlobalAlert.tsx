@@ -51,7 +51,6 @@ export default function GlobalAlert() {
       sx={{
         position: "fixed",
         top: 20,
-        right: 40,
         zIndex: 9999,
         bgcolor: bg,
         color: "white",
@@ -59,9 +58,9 @@ export default function GlobalAlert() {
         p: 2,
         display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         gap: 1,
         boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-        maxWidth: "350px",
         width: "100%",
         animation: "fadeIn 0.3s ease-in-out",
         "@keyframes fadeIn": {

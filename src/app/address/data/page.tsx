@@ -51,8 +51,8 @@ const AddressDataPage = () => {
       {/* Back */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
         <ArrowBackIosNewIcon
-          fontSize="small"
-          sx={{ color: "#fff" }}
+          fontSize="large"
+          sx={{ color: "#7C69F4", ml: -1 }}
           onClick={() => router.back()}
         />
         <Typography>Ул Пушкина колотушкина д2 ст 55</Typography>
@@ -63,12 +63,14 @@ const AddressDataPage = () => {
         fullWidth
         placeholder="Найти номер"
         variant="outlined"
-        size="small"
         InputProps={{
           sx: {
             backgroundColor: "#FDF2F2",
             color: "#A9B7BD",
-            borderRadius: 1,
+            borderRadius: "10px",
+            height: "48px",
+            fontWeight: 500,
+            fontSize: "16px",
           },
           endAdornment: (
             <InputAdornment position="end">
@@ -83,12 +85,14 @@ const AddressDataPage = () => {
       <Select
         fullWidth
         defaultValue="Все"
-        size="small"
         sx={{
-          backgroundColor: "#2A2A2A",
-          color: "#fff",
+          backgroundColor: "#424242",
+          color: "#A9B7BD",
           mb: 2,
-          borderRadius: 1,
+          borderRadius: "10px",
+          height: "48px",
+          fontWeight: 500,
+          border: "none",
         }}
       >
         <MenuItem value="Все">Все</MenuItem>
@@ -99,26 +103,30 @@ const AddressDataPage = () => {
       {/* Buttons */}
       <Box sx={{ display: "flex", gap: 1, mb: 2 }}>
         <Button
-          fullWidth
           sx={{
             backgroundColor: "#FFB800",
-            color: "#FFFF",
-            fontWeight: 600,
+            color: "#FDF2F2",
+            fontWeight: 500,
             borderRadius: "10px",
             textTransform: "none",
+            fontSize: "16px",
+            height: "45px",
+            width: "40%",
           }}
           onClick={() => setOpen(true)}
         >
           Новый товар
         </Button>
         <Button
-          fullWidth
           sx={{
             backgroundColor: "#7A5FFF",
-            color: "#fff",
-            fontWeight: 600,
+            color: "#FDF2F2",
+            fontWeight: 500,
             borderRadius: "10px",
             textTransform: "none",
+            fontSize: "16px",
+            height: "45px",
+            width: "60%",
           }}
           onClick={() => dispatch(openProblemModal())}
         >
@@ -147,7 +155,9 @@ const AddressDataPage = () => {
               alignItems: "center",
             }}
           >
-            <Typography sx={{ fontWeight: 500, fontSize: 14 }}>
+            <Typography
+              sx={{ fontWeight: 700, fontSize: "16px", color: "#A9B7BD" }}
+            >
               {item.phone}
             </Typography>
             <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
@@ -162,17 +172,19 @@ const AddressDataPage = () => {
                   borderRadius: 30,
                 }}
               >
-                <Typography sx={{ fontSize: 12, fontWeight: 600 }}>
+                <Typography
+                  sx={{ fontSize: "16px", fontWeight: 400, color: "#FDF2F2" }}
+                >
                   {item.rest === 0 ? "Все получено" : "Забрать заказы"}
                 </Typography>
               </Box>
               <KeyboardArrowDownIcon
-                fontSize="medium"
                 sx={{
                   transform:
                     openId === item.id ? "rotate(180deg)" : "rotate(0deg)",
                   transition: "0.3s",
                   color: "#7C69F4",
+                  fontSize: "42px",
                 }}
               />
             </Box>
@@ -180,7 +192,7 @@ const AddressDataPage = () => {
 
           {/* Collapse */}
           <Collapse in={openId === item.id} timeout="auto" unmountOnExit>
-            <Box sx={{ mt: 1.5, color: "#aaa", fontSize: 13 }}>
+            <Box sx={{ mt: 1.5 }}>
               {[
                 ["Кол-во адресов:", item.numbers_adress],
                 ["Кол-во товаров:", item.number_products],
@@ -195,23 +207,33 @@ const AddressDataPage = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     width: "80%",
+                    my: 1,
                   }}
                 >
-                  <Typography>{label}</Typography>
-                  <Typography>{value}</Typography>
+                  <Typography
+                    sx={{ fontSize: "14px", color: "#A9B7BD", fontWeight: 500 }}
+                  >
+                    {label}
+                  </Typography>
+                  <Typography
+                    sx={{ fontSize: "14px", color: "#A9B7BD", fontWeight: 600 }}
+                  >
+                    {value}
+                  </Typography>
                 </Box>
               ))}
             </Box>
 
             <Button
-              fullWidth
               sx={{
                 mt: 1.5,
                 backgroundColor: "#7A5FFF",
-                color: "#fff",
-                fontWeight: 600,
-                borderRadius: 1,
+                color: "#FDF2F2",
+                fontWeight: 500,
+                borderRadius: "10px",
                 textTransform: "none",
+                height: "45px",
+                width: "100%",
               }}
               onClick={(e) => {
                 e.stopPropagation();

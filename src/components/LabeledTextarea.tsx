@@ -4,7 +4,6 @@ import React from "react";
 import { TextField } from "@mui/material";
 
 interface LabeledTextareaProps {
-  label: string;
   value: string;
   placeholder?: string;
   onChange: (value: string) => void;
@@ -12,7 +11,6 @@ interface LabeledTextareaProps {
 }
 
 export default function LabeledTextarea({
-  label,
   value,
   placeholder,
   onChange,
@@ -24,7 +22,7 @@ export default function LabeledTextarea({
 
   return (
     <TextField
-      label={label}
+      InputLabelProps={{ shrink: false }}
       placeholder={placeholder}
       value={value}
       onChange={handleChange}

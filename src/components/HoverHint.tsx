@@ -18,7 +18,7 @@ export default function HoverHint({ children, hintContent }: HoverHintProps) {
     const tooltipWidth = 260; // tooltip eni
     const padding = 8;
 
-    let left = rect.left + rect.width / 2 - tooltipWidth / 2;
+    let left = rect.left + rect.width - tooltipWidth;
     let top = rect.bottom + padding;
 
     // Ekrandan chiqmasligi uchun tekshiramiz
@@ -58,13 +58,9 @@ export default function HoverHint({ children, hintContent }: HoverHintProps) {
             top: pos.top,
             left: pos.left,
             zIndex: 9999,
-            bgcolor: "#1E1E1E",
             color: "white",
-            border: "1px solid #444",
             borderRadius: "10px",
-            p: 2,
             width: 260,
-            boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
           }}
           onMouseEnter={() => setVisible(true)}
           onMouseLeave={() => setVisible(false)}

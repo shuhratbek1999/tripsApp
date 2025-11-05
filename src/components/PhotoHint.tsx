@@ -6,17 +6,22 @@ export default function PhotoHint() {
   return (
     <Box
       sx={{
-        bgcolor: "#1E1E1E",
-        borderRadius: 2,
-        p: 2,
+        bgcolor: "#424242",
+        borderRadius: "10px",
+        height: "259px",
+        p: "12px",
         mt: 2,
-        border: "1px solid #333",
       }}
     >
-      <Typography color="#A9B7BD" fontSize="14px" mb={1.5} lineHeight="20px">
-        Сделайте 2–3 фото товара: 1 фото — это сам товар, 2 фото — его этикетки,
-        3 фото — товар в другом ракурсе. Фото должно быть чёткое, а текст на
-        этикетке считываемый.
+      <Typography
+        color="#FDF2F2"
+        fontSize="14px"
+        fontWeight={500}
+        lineHeight="20px"
+      >
+        Сделайте 2-3 фото товара, 1 фото это сам товар, 2 фото его этикетки, 3
+        фото товар в другом ракурсе, фото должно быть четкое, а текст на
+        этикетки считываемый пример:
       </Typography>
 
       {/* misol uchun ikki rasm */}
@@ -27,8 +32,8 @@ export default function PhotoHint() {
           alt="Пример фото"
           sx={{
             width: "48%",
+            height: "133px",
             borderRadius: 2,
-            border: "1px solid #444",
           }}
         />
         <Box
@@ -37,8 +42,8 @@ export default function PhotoHint() {
           alt="Пример фото 2"
           sx={{
             width: "48%",
+            height: "133px",
             borderRadius: 2,
-            border: "1px solid #444",
           }}
         />
       </Box>

@@ -9,9 +9,7 @@ import {
   Modal,
   IconButton,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import DeleteIcon from "@mui/icons-material/Delete";
 import LabeledInput from "@/components/LabeledInput";
 import LabeledTextarea from "./LabeledTextarea";
@@ -67,35 +65,29 @@ export default function ProblemModal() {
           boxShadow: 24,
           maxHeight: "90vh",
           overflowY: "auto",
+          borderRadius: "20px 20px 0 0",
         }}
       >
         {/* HEADER */}
-        <Typography variant="h6" fontWeight={700}>
+        <Typography variant="h1" fontWeight={600} color="#FDF2F2" fontSize={24}>
           Проблема с товаром
         </Typography>
-        {/* Close tugmasi */}
-        <IconButton
-          sx={{
-            position: "absolute",
-            top: 10,
-            right: 10,
-            color: "#B5B5B5",
-            "&:hover": { color: "white" },
-          }}
-          onClick={handleSubmit}
+        <Typography
+          sx={{ mt: 1.5, color: "#FDF2F2", fontSize: "16px", fontWeight: 500 }}
         >
-          <CloseIcon />
-        </IconButton>
-        <Typography sx={{ mt: 1.5, color: "#B5B5B5", fontSize: "14px" }}>
-          Очень жаль что вы столкнулись с какой-то проблемой. Опишите,
-          пожалуйста, что произошло и прикрепите фото товара и его этикетки.
+          Очень жаль что вы столкнулись с какой-то проблемой опишите, пожалуйста
+          что произошло и прикрепите фото товара и его этикетки, как правильно
+          сделать написанно в вопросе если он есть, если вам его не выдают, то
+          просто опишите информацию
         </Typography>
 
         {/* ФОТО ТОВАРА */}
         <Box mt={3}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <HoverHint hintContent={<PhotoHint />}>
-              <Typography fontWeight={600}>Прикрепите фото</Typography>
+              <Typography fontWeight={700} color="#FDF2F2">
+                Прикрепите фото
+              </Typography>
               <HelpOutlineIcon sx={{ color: "#DCDCDC", fontSize: 18 }} />
             </HoverHint>
           </Stack>
@@ -156,51 +148,63 @@ export default function ProblemModal() {
               <Box
                 onClick={() => fileInputRef.current?.click()}
                 sx={{
-                  width: 90,
-                  height: 90,
-                  bgcolor: "#2A2A2A",
+                  width: 107,
+                  height: 107,
+                  bgcolor: "#1B1A2033",
                   borderRadius: "10px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  border: "1px dashed #7C69F4",
+                  border: "none",
                   cursor: "pointer",
                 }}
-              >
-                <AddPhotoAlternateIcon sx={{ color: "#7C69F4" }} />
-              </Box>
+              ></Box>
             )}
           </Stack>
         </Box>
 
         {/* ЗАПОЛНИТЕ ИНФОРМАЦИЮ */}
-        <Box mt={3}>
+        <Box mt={2}>
           <Stack direction="row" alignItems="center" spacing={1}>
             <HoverHint hintContent={<PhotoHintLabelInfo />}>
-              <Typography fontWeight={600}>Заполните информацию</Typography>
+              <Typography fontWeight={700} fontSize={16} color="#FDF2F2">
+                Заполните информацию
+              </Typography>
               <HelpOutlineIcon sx={{ color: "#DCDCDC", fontSize: 18 }} />
             </HoverHint>
           </Stack>
 
-          <Stack spacing={2} mt={1.5}>
+          <Stack spacing={0.5} mt={1.5}>
+            <Typography
+              sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+            >
+              Бренд
+            </Typography>
             <LabeledInput
-              label="Бренд"
               placeholder="Введите бренд товара"
               value={form.brand}
               onChange={(v) =>
                 dispatch(setProblemField({ field: "brand", value: v }))
               }
             />
+            <Typography
+              sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+            >
+              Артикул
+            </Typography>
             <LabeledInput
-              label="Артикул"
               placeholder="Введите артикул товара"
               value={form.article}
               onChange={(v) =>
                 dispatch(setProblemField({ field: "article", value: v }))
               }
             />
+            <Typography
+              sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+            >
+              Баркод
+            </Typography>
             <LabeledInput
-              label="Баркод"
               placeholder="Введите баркод товара"
               value={form.barcode}
               onChange={(v) =>
@@ -208,8 +212,12 @@ export default function ProblemModal() {
               }
               withScanner
             />
+            <Typography
+              sx={{ color: "#FDF2F2", fontSize: "14px", fontWeight: 500 }}
+            >
+              Объяснение
+            </Typography>
             <LabeledTextarea
-              label="Объяснение"
               placeholder="Коротко опишите ситуацию"
               value={form.description}
               onChange={(v) =>
@@ -226,11 +234,12 @@ export default function ProblemModal() {
           sx={{
             mt: 3,
             bgcolor: "#7C69F4",
-            color: "white",
+            color: "#FDF2F2",
             borderRadius: "10px",
-            fontWeight: 600,
+            fontWeight: 500,
             textTransform: "none",
             py: 1.2,
+            height: "45px",
             "&:hover": { bgcolor: "#6B5AE0" },
           }}
         >

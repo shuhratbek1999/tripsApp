@@ -2,11 +2,9 @@
 
 import React from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
-import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import CenterFocusWeakIcon from "@mui/icons-material/CenterFocusWeak";
 
 interface LabeledInputProps {
-  label: string;
   value: string;
   placeholder?: string;
   onChange: (value: string) => void;
@@ -14,7 +12,6 @@ interface LabeledInputProps {
 }
 
 export default function LabeledInput({
-  label,
   value,
   placeholder,
   onChange,
@@ -26,12 +23,12 @@ export default function LabeledInput({
 
   return (
     <TextField
-      label={label}
+      variant="outlined"
       placeholder={placeholder}
       value={value}
       onChange={handleChange}
       fullWidth
-      variant="outlined"
+      InputLabelProps={{ shrink: false }} // ✅ labelni butunlay yo‘q qiladi
       InputProps={{
         endAdornment: withScanner ? (
           <InputAdornment position="end">
@@ -50,6 +47,7 @@ const inputStyle = {
   "& .MuiOutlinedInput-root": {
     borderRadius: "10px",
     backgroundColor: "#FDF2F2",
+    height: "45px",
     "& fieldset": {
       borderColor: "#444",
     },
@@ -60,13 +58,8 @@ const inputStyle = {
       borderColor: "#7C69F4",
     },
   },
-  "& .MuiInputLabel-root": {
-    color: "#A9B7BD",
-  },
-  "& .MuiInputLabel-root.Mui-focused": {
-    color: "#A9B7BD",
-  },
   "& .MuiInputBase-input": {
     color: "#A9B7BD",
+    height: "45px",
   },
 };

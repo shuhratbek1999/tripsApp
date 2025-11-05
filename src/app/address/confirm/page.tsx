@@ -29,8 +29,8 @@ const ConfirmAddressPage = () => {
       {/* Back + Address */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
         <ArrowBackIosNewIcon
-          fontSize="small"
-          sx={{ color: "#fff" }}
+          fontSize="large"
+          sx={{ color: "#7C69F4", ml: -1 }}
           onClick={() => router.back()}
         />
         <Typography sx={{ fontWeight: 500 }}>{address.address}</Typography>

@@ -58,6 +58,17 @@ export default function TripItem({
         return "Завершено";
     }
   };
+  const getStep = () => {
+    switch (step) {
+      case 0:
+        return "Запланирован";
+      case 1:
+        return "Процесс передачи";
+      default:
+        return "Запланирован";
+        break;
+    }
+  };
 
   // step holatiga qarab tugma rangi
   const getButtonColor = () => {
@@ -120,7 +131,7 @@ export default function TripItem({
           color="white"
           sx={{
             fontSize: "16px",
-            fontWeight: 600,
+            fontWeight: 700,
             color: "#A9B7BD",
           }}
         >
@@ -131,19 +142,20 @@ export default function TripItem({
           <Button
             variant="contained"
             sx={{
-              bgcolor: "#4C84EC",
+              bgcolor: step == 1 ? "#FFAE00" : "#4C84EC",
               borderRadius: "30px",
               textTransform: "none",
               color: "white",
             }}
           >
-            Запланирован
+            {getStep()}
           </Button>
           <KeyboardArrowDownIcon
             sx={{
               color: "#7C69F4",
               transform: open ? "rotate(180deg)" : "rotate(0deg)",
               transition: "0.3s",
+              fontSize: "42px",
             }}
           />
         </Box>
@@ -162,14 +174,20 @@ export default function TripItem({
             width: "80%",
           }}
         >
-          <Typography variant="caption">ID выезда</Typography>
+          <Typography
+            sx={{ fontWeight: 700, fontSize: "16px", color: "#A9B7BD" }}
+          >
+            ID выезда
+          </Typography>
           <Typography
             variant="h6"
             sx={{
               mx: 1,
-              fontSize: "14px",
               display: "flex",
               alignItems: "center",
+              fontWeight: 700,
+              fontSize: "16px",
+              color: "#A9B7BD",
             }}
           >
             ID выезда
@@ -193,10 +211,19 @@ export default function TripItem({
               width: "80%",
             }}
           >
-            <Typography variant="caption" color="#A9B7BD">
+            <Typography
+              variant="caption"
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 500 }}
+            >
               Кол-во адресов:
             </Typography>
-            <Typography>{total.numbers_adress}</Typography>
+            <Typography
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 700 }}
+            >
+              {total.numbers_adress}
+            </Typography>
           </Box>
           <Box
             sx={{
@@ -206,10 +233,19 @@ export default function TripItem({
               width: "80%",
             }}
           >
-            <Typography variant="caption" color="#A9B7BD">
+            <Typography
+              variant="caption"
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 500 }}
+            >
               Кол-во товаров:
             </Typography>
-            <Typography>{total.number_products}</Typography>
+            <Typography
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 700 }}
+            >
+              {total.number_products}
+            </Typography>
           </Box>
           <Box
             sx={{
@@ -219,10 +255,19 @@ export default function TripItem({
               width: "80%",
             }}
           >
-            <Typography variant="caption" color="#A9B7BD">
+            <Typography
+              variant="caption"
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 500 }}
+            >
               Получено:
             </Typography>
-            <Typography>{total.accepted}</Typography>
+            <Typography
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 700 }}
+            >
+              {total.accepted}
+            </Typography>
           </Box>
           <Box
             sx={{
@@ -232,10 +277,19 @@ export default function TripItem({
               width: "80%",
             }}
           >
-            <Typography variant="caption" color="#A9B7BD">
+            <Typography
+              variant="caption"
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 500 }}
+            >
               Осталось получить:
             </Typography>
-            <Typography>{total.rest}</Typography>
+            <Typography
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 700 }}
+            >
+              {total.rest}
+            </Typography>
           </Box>
           <Box
             sx={{
@@ -245,10 +299,19 @@ export default function TripItem({
               width: "80%",
             }}
           >
-            <Typography variant="caption" color="#A9B7BD">
+            <Typography
+              variant="caption"
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 500 }}
+            >
               Не получил:
             </Typography>
-            <Typography>{total.getnot}</Typography>
+            <Typography
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 700 }}
+            >
+              {total.getnot}
+            </Typography>
           </Box>
           <Box
             sx={{
@@ -258,26 +321,36 @@ export default function TripItem({
               width: "80%",
             }}
           >
-            <Typography variant="caption" color="#A9B7BD">
+            <Typography
+              variant="caption"
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 500 }}
+            >
               Передал на склад:
             </Typography>
-            <Typography>{total.delivered_count}</Typography>
+            <Typography
+              color="#A9B7BD"
+              sx={{ fontSize: "16px", fontWeight: 700 }}
+            >
+              {total.delivered_count}
+            </Typography>
           </Box>
         </Box>
 
         {/* Pastdagi tugmalar */}
         <Stack direction="row" spacing={2} mt={2}>
           <Button
-            variant="contained"
             sx={{
               bgcolor: getButtonColor(),
               fontSize: "16px",
-              fontWeight: 600,
+              fontWeight: 500,
               textTransform: "none",
               borderRadius: "10px",
-              color: "white",
+              color: "#FDF2F2",
+              height: "45px",
+              py: "12px",
+              width: "50%",
             }}
-            fullWidth
             onClick={(e) => {
               e.stopPropagation();
               dispatch(updateTripStep({ id }));
@@ -287,19 +360,22 @@ export default function TripItem({
           </Button>
 
           <Button
-            variant="contained"
             sx={{
               backgroundColor: "#7C69F4",
               fontSize: "16px",
-              fontWeight: 600,
+              fontWeight: 500,
               textTransform: "none",
               borderRadius: "10px",
-              color: "white",
+              color: "#FDF2F2",
+              width: "50%",
+              height: "45px",
+              py: "12px",
+              px: "24px",
             }}
             fullWidth
             onClick={(e) => {
               e.stopPropagation(); // collapse ochilishini to‘xtatadi
-              router.push(`/trips/${id}`); // /trips/[id] sahifasiga o‘tadi
+              router.push(`/klaster`); // /trips/[id] sahifasiga o‘tadi
             }}
           >
             Подробнее

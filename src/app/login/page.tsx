@@ -14,7 +14,7 @@ import { login } from "../../redux/authSlice";
 import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
+import { showAlert } from "@/redux/alertSlice";
 export default function LoginPage() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -41,16 +41,38 @@ export default function LoginPage() {
   const handleContinue = () => {
     if (isPhoneValid) {
       setShowPasswordInput(true); // parol inputini chiqarish
+    } else {
+      dispatch(
+        showAlert({
+          message: "Номер телефона неверный. Проверьте и попробуйте снова",
+          type: "error",
+        })
+      );
     }
   };
 
   const handleLogin = () => {
     if (password.trim().length >= 6) {
-      dispatch(login(phone));
-      router.push("/trips");
+      if (password == "888888") {
+        dispatch(login(phone));
+        router.push("/trips");
+      } else {
+        dispatch(
+          showAlert({
+            message: "Пароль неверный. Проверьте пароль и попробуйте еще раз",
+            type: "error",
+          })
+        );
+      }
+    } else {
+      dispatch(
+        showAlert({
+          message: "длина пароля менее 6 символов",
+          type: "error",
+        })
+      );
     }
   };
-
   return (
     <Box
       sx={{
@@ -63,7 +85,7 @@ export default function LoginPage() {
         px: 2,
       }}
     >
-      <Box sx={{ mb: 6, mt: 2 }}>
+      <Box sx={{ mb: 5, mt: 2 }}>
         <img src="/logoo.svg" alt="Logo" width={127} height={148} />
       </Box>
 
@@ -72,91 +94,106 @@ export default function LoginPage() {
           width: "100%",
           maxWidth: 375,
           bgcolor: "#2D2D2D",
-          borderRadius: 2,
-          p: 4,
+          borderRadius: "30px",
+          p: "20px",
           display: "flex",
           flexDirection: "column",
-          gap: 2,
         }}
       >
         <Typography
-          variant="h6"
-          color="white"
+          variant="h1"
+          color="#FDF2F2"
           textAlign="center"
-          sx={{ fontWeight: 600, fontSize: "28px" }}
+          sx={{ fontWeight: 600, fontSize: "24px", mb: 2 }}
         >
           Добро пожаловать
         </Typography>
         <Typography
           color="#A9B7BD"
           textAlign="center"
-          sx={{ fontWeight: 500, fontSize: "16px" }}
+          sx={{ fontWeight: 500, fontSize: "16px", mb: 1 }}
         >
           Введите номер телефона для входа
         </Typography>
 
         {/* Telefon input */}
         <TextField
-          label="+7 (000) 000 00 00"
-          variant="filled"
+          placeholder="+7 (000) 000 00 00"
           fullWidth
           value={phone}
           onChange={handlePhoneChange}
           InputLabelProps={{ style: { color: "#AFB6BE" } }}
           InputProps={{
-            style: { color: "#AFB6BE", backgroundColor: "#F5F3F8" },
+            style: {
+              color: "#A9B7BD",
+              backgroundColor: "#FDF2F2",
+              borderRadius: "10px",
+              height: "45px",
+              padding: "12px",
+              fontWeight: 500,
+              textAlign: "center",
+              textIndent: "90px",
+            },
           }}
           error={phone.length > 0 && !isPhoneValid}
-          helperText={
-            phone.length > 0 && !isPhoneValid
-              ? "Введите корректный номер (+7XXXXXXXXXX)"
-              : " "
-          }
         />
 
         {/* Agar parol input chiqsa, u pastda ko‘rinadi */}
         {showPasswordInput && (
-          <TextField
-            label="Пароль"
-            variant="filled"
-            fullWidth
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            InputLabelProps={{ style: { color: "#AFB6BE" } }}
-            InputProps={{
-              style: { color: "#AFB6BE", backgroundColor: "#F5F3F8" },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    edge="end"
-                  >
-                    {showPassword ? (
-                      <VisibilityOff sx={{ color: "#7C69F4" }} />
-                    ) : (
-                      <Visibility sx={{ color: "#7C69F4" }} />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            error={password.length > 0 && password.length < 6}
-            helperText={
-              password.length > 0 && password.length < 6
-                ? "Минимум 6 символов"
-                : " "
-            }
-          />
+          <Box>
+            <Typography
+              sx={{
+                color: "#FDF2F2",
+                fontWeight: 500,
+                fontSize: "14px",
+                mt: 1,
+              }}
+            >
+              Введите пароль
+            </Typography>
+            <TextField
+              placeholder="Введите пароль"
+              fullWidth
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              InputLabelProps={{ style: { color: "#AFB6BE" } }}
+              InputProps={{
+                style: {
+                  color: "#A9B7BD",
+                  backgroundColor: "#FDF2F2",
+                  height: "45px",
+                  borderRadius: "10px",
+                  padding: "12px",
+                },
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                    >
+                      {showPassword ? (
+                        <VisibilityOff sx={{ color: "#7C69F4" }} />
+                      ) : (
+                        <Visibility sx={{ color: "#7C69F4" }} />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              error={password.length > 0 && password.length < 6}
+            />
+          </Box>
         )}
 
         {/* Продолжить yoki Войти tugmasi */}
         <Button
-          variant="contained"
           fullWidth
           sx={{
-            mt: 1,
-            py: "14px",
+            mt: 1.5,
+            height: "45px",
+            py: "12px",
+            px: "24px",
             bgcolor:
               showPasswordInput && password.trim().length >= 6
                 ? "#7C69F4"
@@ -166,8 +203,8 @@ export default function LoginPage() {
             color:
               (showPasswordInput && password.trim().length >= 6) ||
               (!showPasswordInput && isPhoneValid)
-                ? "white"
-                : "#AFB6BE",
+                ? "#FDF2F2"
+                : "#FDF2F2",
             fontWeight: 500,
             borderRadius: "10px",
             transition: "0.3s",
@@ -183,25 +220,28 @@ export default function LoginPage() {
         {/* Pastdagi qism har doim ko‘rinadi */}
         <Typography
           variant="body2"
-          color="white"
+          color="#A9B7BD"
           textAlign="center"
-          sx={{ mt: 1, fontSize: "18px" }}
+          sx={{ fontSize: "16px", my: 1, fontWeight: 500 }}
         >
           или
         </Typography>
 
         <Button
-          variant="outlined"
           fullWidth
           startIcon={
             <img src="/tg.svg" alt="Telegram" width={24} height={24} />
           }
           sx={{
-            color: "#AFB6BE",
+            color: "#A9B7BD",
             borderColor: "white",
-            backgroundColor: "#F5F3F8",
+            backgroundColor: "#FDF2F2",
             fontWeight: 500,
-            height: "56px",
+            height: "52px",
+            py: "12px",
+            px: "24px",
+            borderRadius: "10px",
+            fontSize: "16px",
           }}
         >
           Telegram
