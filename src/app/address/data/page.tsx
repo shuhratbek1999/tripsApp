@@ -9,10 +9,9 @@ import {
   Select,
   MenuItem,
   Collapse,
+  SelectChangeEvent,
 } from "@mui/material";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import SearchIcon from "@mui/icons-material/Search";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
@@ -21,15 +20,20 @@ import ProductModal from "@/components/ProductModal";
 import ProblemModal from "@/components/ProblemModal";
 import { openProblemModal } from "@/redux/problemSlice";
 import { useDispatch } from "react-redux";
+import FormControl from "@mui/material/FormControl";
+
 const AddressDataPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const trip = useSelector((state: RootState) => state.trips.trips[0]);
   const addresses = trip.details[0].addresses;
+  const [value, setValue] = useState("Все");
 
+  const handleChange = (event: SelectChangeEvent) => {
+    setValue(event.target.value as string);
+  };
   const [openId, setOpenId] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
-  const [problemOpen, setProblemOpen] = useState(false);
   const handleToggle = (id: number) => {
     setOpenId(openId === id ? null : id);
   };
@@ -47,22 +51,27 @@ const AddressDataPage = () => {
       <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
         <img src="/logo-trips.svg" alt="Logo trips" />
       </Box>
-
       {/* Back */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-        <ArrowBackIosNewIcon
-          fontSize="large"
-          sx={{ color: "#7C69F4", ml: -1 }}
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}>
+        <img
+          src="/exit.svg"
+          alt="exit img"
+          width={12.9}
+          height={24}
           onClick={() => router.back()}
         />
-        <Typography>Ул Пушкина колотушкина д2 ст 55</Typography>
+        <Typography
+          sx={{ fontWeight: 700, fontSize: "16px", color: "#FDF2F2" }}
+        >
+          Ул Пушкина колотушкина д2 ст 55
+        </Typography>
       </Box>
-
       {/* Search */}
       <TextField
         fullWidth
         placeholder="Найти номер"
         variant="outlined"
+        size="small"
         InputProps={{
           sx: {
             backgroundColor: "#FDF2F2",
@@ -71,6 +80,10 @@ const AddressDataPage = () => {
             height: "48px",
             fontWeight: 500,
             fontSize: "16px",
+            px: 1.5,
+            "& .MuiOutlinedInput-notchedOutline": {
+              border: "none", // ❌ obvodka yo‘q
+            },
           },
           endAdornment: (
             <InputAdornment position="end">
@@ -78,28 +91,52 @@ const AddressDataPage = () => {
             </InputAdornment>
           ),
         }}
-        sx={{ mb: 2 }}
-      />
-
-      {/* Select */}
-      <Select
-        fullWidth
-        defaultValue="Все"
-        sx={{
-          backgroundColor: "#424242",
-          color: "#A9B7BD",
-          mb: 2,
-          borderRadius: "10px",
-          height: "48px",
-          fontWeight: 500,
-          border: "none",
+        inputProps={{
+          sx: {
+            "&::placeholder": {
+              color: "#A9B7BD",
+              opacity: 1, // rang tiniq chiqsin
+            },
+          },
         }}
-      >
-        <MenuItem value="Все">Все</MenuItem>
-        <MenuItem value="Забрать">Забрать</MenuItem>
-        <MenuItem value="Получено">Получено</MenuItem>
-      </Select>
-
+        sx={{
+          mb: 2,
+        }}
+      />
+      <Box sx={{ position: "relative", mb: 2 }}>
+        <FormControl fullWidth variant="outlined">
+          <Select
+            value={value}
+            onChange={handleChange}
+            displayEmpty
+            IconComponent={() => null}
+            sx={{
+              backgroundColor: "#424242",
+              color: "#A9B7BD",
+              borderRadius: "10px",
+              height: "48px",
+              fontWeight: 500,
+              fontSize: "16px",
+              "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+              paddingRight: "40px", // ikon uchun joy
+            }}
+          >
+            <MenuItem value="Все">Все</MenuItem>
+            <MenuItem value="Забрать">Забрать</MenuItem>
+            <MenuItem value="Получено">Получено</MenuItem>
+          </Select>
+        </FormControl>
+        <img
+          src="/str2.svg"
+          alt="strelkaa"
+          style={{
+            position: "absolute",
+            right: 12,
+            top: 12,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
+      </Box>
       {/* Buttons */}
       <Box sx={{ display: "flex", gap: 1, mb: 2 }}>
         <Button
@@ -133,7 +170,6 @@ const AddressDataPage = () => {
           Выгрузить данные
         </Button>
       </Box>
-
       {/* Phones list */}
       {addresses.map((item) => (
         <Box
@@ -156,7 +192,12 @@ const AddressDataPage = () => {
             }}
           >
             <Typography
-              sx={{ fontWeight: 700, fontSize: "16px", color: "#A9B7BD" }}
+              sx={{
+                fontWeight: 700,
+                fontSize: "16px",
+                color: "#A9B7BD",
+                whiteSpace: "nowrap",
+              }}
             >
               {item.phone}
             </Typography>
@@ -166,11 +207,16 @@ const AddressDataPage = () => {
                   display: "flex",
                   alignItems: "center",
                   backgroundColor: item.rest === 0 ? "#2ECC71" : "#E74C3C",
-                  py: 0.3,
-                  px: 0.5,
-                  borderRadius: 30,
-                  height: "30px",
-                  width: "90%",
+                  textTransform: "none",
+                  color: "#FDF2F2",
+                  height: "29px",
+                  fontWeight: 400,
+                  fontSize: "16px",
+                  padding: "4px 12px",
+                  minWidth: "139px",
+                  maxWidth: "170px",
+                  whiteSpace: "nowrap",
+                  borderRadius: "30px",
                 }}
               >
                 <Typography
@@ -179,14 +225,17 @@ const AddressDataPage = () => {
                   {item.rest === 0 ? "Все получено" : "Забрать заказы"}
                 </Typography>
               </Box>
-              <KeyboardArrowDownIcon
-                fontSize="large"
-                sx={{
-                  transform:
-                    openId === item.id ? "rotate(180deg)" : "rotate(0deg)",
-                  transition: "0.3s",
-                  color: "#7C69F4",
+              <img
+                src={open ? "/strtepa.svg" : "/strpast.svg"}
+                alt="arrow"
+                width={24}
+                height={24}
+                style={{
+                  marginLeft: "6px",
+                  cursor: "pointer",
+                  transition: "transform 0.3s ease",
                 }}
+                onClick={() => setOpen(!open)}
               />
             </Box>
           </Box>
@@ -211,16 +260,36 @@ const AddressDataPage = () => {
                     my: 1,
                   }}
                 >
-                  <Typography
-                    sx={{ fontSize: "14px", color: "#A9B7BD", fontWeight: 500 }}
+                  <Box sx={{ width: "60%" }}>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                        color: "#A9B7BD",
+                        fontWeight: 500,
+                      }}
+                    >
+                      {label}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "30%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
                   >
-                    {label}
-                  </Typography>
-                  <Typography
-                    sx={{ fontSize: "14px", color: "#A9B7BD", fontWeight: 600 }}
-                  >
-                    {value}
-                  </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                        color: "#A9B7BD",
+                        fontWeight: 600,
+                        textAlign: "start",
+                      }}
+                    >
+                      {value}
+                    </Typography>
+                  </Box>
                 </Box>
               ))}
             </Box>

@@ -3,12 +3,14 @@ import Providers from "@/Providers/Provider";
 import { Red_Hat_Text } from "next/font/google";
 
 const redHatText = Red_Hat_Text({
-  subsets: ["latin"], // kerakli subset
-  weight: ["400", "500", "700"], // kerakli og‘irliklar
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-red-hat-text",
   display: "swap",
 });
+
 export const metadata = {
-  title: "Trips App",
+  title: "Courier UI",
   description: "Manage your WB trips easily",
 };
 
@@ -18,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={redHatText.className}>
-      <body>
+    <html lang="en" className={redHatText.variable}>
+      <body className={redHatText.className}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -7,11 +7,13 @@ import {
   InputAdornment,
   MenuItem,
   Collapse,
+  SelectChangeEvent,
+  Select,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import FormControl from "@mui/material/FormControl";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useRouter } from "next/navigation";
@@ -24,14 +26,16 @@ const CompletedAddressPage = () => {
   // 🔹 Redux'dan ma’lumotlar
   const trip = useSelector((state: RootState) => state.trips.trips[0]);
   const cluster = trip.details[0];
-
+  const [value, setValue] = useState("Все");
   // 🔹 Collapse uchun local holat
   const [openId, setOpenId] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
   const toggleCollapse = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
-
+  const handleChange = (event: SelectChangeEvent) => {
+    setValue(event.target.value as string);
+  };
   return (
     <Box
       sx={{
@@ -52,9 +56,11 @@ const CompletedAddressPage = () => {
 
       {/* Address */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-        <ArrowBackIosNewIcon
-          fontSize="large"
-          sx={{ color: "#7C69F4", ml: -1 }}
+        <img
+          src="/exit.svg"
+          alt="exit img"
+          width={12.9}
+          height={24}
           onClick={() => router.back()}
         />
         <Typography
@@ -85,24 +91,40 @@ const CompletedAddressPage = () => {
         sx={{ mb: 2 }}
       />
 
-      {/* Select */}
-      <TextField
-        select
-        value="Все"
-        fullWidth
-        InputProps={{
-          sx: {
-            borderRadius: "10px",
-            backgroundColor: "#424242",
-            color: "#A9B7BD",
-          },
-        }}
-        sx={{ mb: 2 }}
-      >
-        <MenuItem value="Все">Все</MenuItem>
-        <MenuItem value="Забрать">Забрать</MenuItem>
-        <MenuItem value="Получено">Получено</MenuItem>
-      </TextField>
+      <Box sx={{ position: "relative", mb: 2 }}>
+        <FormControl fullWidth variant="outlined">
+          <Select
+            value={value}
+            onChange={handleChange}
+            displayEmpty
+            IconComponent={() => null}
+            sx={{
+              backgroundColor: "#424242",
+              color: "#A9B7BD",
+              borderRadius: "10px",
+              height: "48px",
+              fontWeight: 500,
+              fontSize: "16px",
+              "& .MuiOutlinedInput-notchedOutline": { border: "none" },
+              paddingRight: "40px", // ikon uchun joy
+            }}
+          >
+            <MenuItem value="Все">Все</MenuItem>
+            <MenuItem value="Забрать">Забрать</MenuItem>
+            <MenuItem value="Получено">Получено</MenuItem>
+          </Select>
+        </FormControl>
+        <img
+          src="/str2.svg"
+          alt="strelkaa"
+          style={{
+            position: "absolute",
+            right: 12,
+            top: 12,
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
+      </Box>
 
       <Box sx={{ display: "flex", gap: 1, mb: 2 }}>
         <Button
@@ -242,7 +264,7 @@ const CompletedAddressPage = () => {
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
-                  router.push(`/address/phone/${addr.id}`);
+                  router.push(`/address/phone`);
                 }}
               >
                 Подробнее

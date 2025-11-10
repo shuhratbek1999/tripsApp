@@ -13,29 +13,19 @@ export default function TripsPage() {
     <Box sx={{ minHeight: "100vh", p: 2, bgcolor: "#121212" }}>
       {/* Logo */}
       <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
-        <img src="/logo-trips.svg" alt="Logo trips" />
+        <img src="/logo-trips.svg" width={101} height={44} alt="Logo trips" />
       </Box>
-
       {/* Title */}
       <Box sx={{ width: "100%" }}>
         <Typography
           variant="h5"
-          color="white"
+          color="#FDF2F2"
           mb={1}
-          sx={{ fontSize: "28px", fontWeight: 700 }}
+          sx={{ fontSize: "24px", fontWeight: 600 }}
         >
           Мои выезды на WB
         </Typography>
-        <Typography
-          variant="body1"
-          color="#A9B7BD"
-          mb={3}
-          sx={{ fontSize: "16px" }}
-        >
-          Тут он будет видеть информацию по его выездам
-        </Typography>
-      </Box>
-
+      </Box>{" "}
       {/* Trips list */}
       {trips.length === 0 ? (
         <Typography color="#A9B7BD">Выездов пока нет</Typography>

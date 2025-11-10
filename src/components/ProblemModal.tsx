@@ -88,7 +88,42 @@ export default function ProblemModal() {
               <Typography fontWeight={700} color="#FDF2F2">
                 Прикрепите фото
               </Typography>
-              <HelpOutlineIcon sx={{ color: "#DCDCDC", fontSize: 18 }} />
+              <Box
+                sx={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  backgroundColor: "#DCDCDC", // 🔹 orqa fon (och kulrang / oq)
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Box
+                  component="svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  sx={{
+                    display: "inline-block",
+                    verticalAlign: "middle",
+                  }}
+                >
+                  <circle cx="9" cy="9" r="9" fill="#E6E6E6" />
+                  <text
+                    x="9"
+                    y="12"
+                    textAnchor="middle"
+                    fontSize="10"
+                    fontWeight="bold"
+                    fill="#1B1A20"
+                    fontFamily="Arial, sans-serif"
+                  >
+                    ?
+                  </text>
+                </Box>
+              </Box>
             </HoverHint>
           </Stack>
 
@@ -170,7 +205,42 @@ export default function ProblemModal() {
               <Typography fontWeight={700} fontSize={16} color="#FDF2F2">
                 Заполните информацию
               </Typography>
-              <HelpOutlineIcon sx={{ color: "#DCDCDC", fontSize: 18 }} />
+              <Box
+                sx={{
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
+                  backgroundColor: "#DCDCDC", // 🔹 orqa fon (och kulrang / oq)
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Box
+                  component="svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  sx={{
+                    display: "inline-block",
+                    verticalAlign: "middle",
+                  }}
+                >
+                  <circle cx="9" cy="9" r="9" fill="#E6E6E6" />
+                  <text
+                    x="9"
+                    y="12"
+                    textAnchor="middle"
+                    fontSize="10"
+                    fontWeight="bold"
+                    fill="#1B1A20"
+                    fontFamily="Arial, sans-serif"
+                  >
+                    ?
+                  </text>
+                </Box>
+              </Box>
             </HoverHint>
           </Stack>
 

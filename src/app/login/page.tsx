@@ -12,13 +12,11 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
 import { useState } from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { showAlert } from "@/redux/alertSlice";
 export default function LoginPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-
+  const [isTyping, setIsTyping] = useState(false);
   const [phone, setPhone] = useState("");
   const [isPhoneValid, setIsPhoneValid] = useState(false);
   const [showPasswordInput, setShowPasswordInput] = useState(false);
@@ -34,6 +32,7 @@ export default function LoginPage() {
 
   const handlePhoneChange = (e: any) => {
     const value = e.target.value;
+    setIsTyping(e.target.value.length > 0);
     setPhone(value);
     validatePhone(value);
   };
@@ -125,15 +124,16 @@ export default function LoginPage() {
           InputLabelProps={{ style: { color: "#AFB6BE" } }}
           InputProps={{
             style: {
-              color: "#A9B7BD",
+              color: !isTyping ? "#AFB6BE" : "#2D2D2D",
               backgroundColor: "#FDF2F2",
               borderRadius: "10px",
               height: "45px",
-              padding: "12px",
               fontWeight: 500,
-              textAlign: "center",
-              textIndent: "90px",
+              fontSize: "16px",
             },
+          }}
+          inputProps={{
+            style: { textAlign: "center" },
           }}
           error={phone.length > 0 && !isPhoneValid}
         />
@@ -160,7 +160,7 @@ export default function LoginPage() {
               InputLabelProps={{ style: { color: "#AFB6BE" } }}
               InputProps={{
                 style: {
-                  color: "#A9B7BD",
+                  color: !isTyping ? "#AFB6BE" : "#2D2D2D",
                   backgroundColor: "#FDF2F2",
                   height: "45px",
                   borderRadius: "10px",
@@ -169,14 +169,16 @@ export default function LoginPage() {
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
                       edge="end"
+                      onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? (
-                        <Visibility sx={{ color: "#7C69F4" }} />
-                      ) : (
-                        <VisibilityOff sx={{ color: "#7C69F4" }} />
-                      )}
+                      <img
+                        src="/eyes.svg"
+                        alt="eyes"
+                        width="21"
+                        height="21"
+                        style={{ cursor: "pointer" }}
+                      />
                     </IconButton>
                   </InputAdornment>
                 ),

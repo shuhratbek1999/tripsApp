@@ -16,9 +16,6 @@ export default function ThemeRegistry({
         default: "#f9f9f9",
       },
     },
-    typography: {
-      fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    },
     shape: {
       borderRadius: 10,
     },

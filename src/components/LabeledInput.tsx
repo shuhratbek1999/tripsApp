@@ -2,7 +2,6 @@
 
 import React from "react";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
-import CenterFocusWeakIcon from "@mui/icons-material/CenterFocusWeak";
 
 interface LabeledInputProps {
   value: string;
@@ -21,19 +20,45 @@ export default function LabeledInput({
     onChange(e.target.value);
   };
 
+  const BarcodeScanIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      {/* Chetlardagi yumaloq kamonlar — sal ichkariga tortilgan */}
+      <path
+        d="M6 8C6 6.34315 7.34315 5 9 5M15 5C16.6569 5 18 6.34315 18 8M18 16C18 17.6569 16.6569 19 15 19M9 19C7.34315 19 6 17.6569 6 16"
+        stroke="#7C69F4"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* O‘rtadagi chiziq — biroz uzunroq */}
+      <path
+        d="M7 12H17"
+        stroke="#7C69F4"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+
   return (
     <TextField
-      variant="outlined"
+      variant="filled"
       placeholder={placeholder}
       value={value}
       onChange={handleChange}
       fullWidth
-      InputLabelProps={{ shrink: false }} // ✅ labelni butunlay yo‘q qiladi
       InputProps={{
+        disableUnderline: true,
         endAdornment: withScanner ? (
           <InputAdornment position="end">
-            <IconButton>
-              <CenterFocusWeakIcon sx={{ color: "#7C69F4" }} />
+            <IconButton disableRipple sx={{ p: 0 }}>
+              <BarcodeScanIcon />
             </IconButton>
           </InputAdornment>
         ) : undefined,
@@ -44,22 +69,24 @@ export default function LabeledInput({
 }
 
 const inputStyle = {
-  "& .MuiOutlinedInput-root": {
+  "& .MuiFilledInput-root": {
     borderRadius: "10px",
     backgroundColor: "#FDF2F2",
-    height: "45px",
-    "& fieldset": {
-      borderColor: "#444",
-    },
-    "&:hover fieldset": {
-      borderColor: "#7C69F4",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#7C69F4",
+    height: "48px",
+    border: "none !important",
+    boxShadow: "none !important",
+    outline: "none !important",
+    "&:before, &:after": {
+      display: "none !important",
     },
   },
   "& .MuiInputBase-input": {
     color: "#A9B7BD",
-    height: "45px",
+    fontSize: "16px",
+    padding: "0 14px",
+    "::placeholder": {
+      color: "#A9B7BD",
+      opacity: 1,
+    },
   },
 };

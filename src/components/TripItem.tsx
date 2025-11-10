@@ -112,9 +112,10 @@ export default function TripItem({
       sx={{
         bgcolor: "#2D2D2D",
         borderRadius: 2,
-        p: 1.5,
-        mb: 2,
+        p: "12px",
+        my: 2,
         cursor: "pointer",
+        width: "100%",
       }}
       onClick={() => setOpen(!open)}
     >
@@ -124,39 +125,51 @@ export default function TripItem({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          width: "100%",
+          height: "29px",
         }}
       >
         <Typography
-          color="white"
           sx={{
             fontSize: "16px",
             fontWeight: 700,
             color: "#A9B7BD",
+            maxWidth: "130px",
+            whiteSpace: "nowrap",
           }}
         >
           {date_time}
         </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Button
+          <Box
             sx={{
               bgcolor: step == 1 ? "#FFAE00" : "#4C84EC",
               borderRadius: "30px",
               textTransform: "none",
               color: "#FDF2F2",
-              width: "150px",
-              height: "30px",
+              height: "29px",
+              fontWeight: 400,
+              fontSize: "16px",
+              padding: "4px 12px",
+              minWidth: "139px",
+              maxWidth: "170px",
+              whiteSpace: "nowrap",
             }}
           >
             {getStep()}
-          </Button>
-          <KeyboardArrowDownIcon
-            sx={{
-              color: "#7C69F4",
-              transform: open ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "0.3s",
+          </Box>
+          <img
+            src={open ? "/strtepa.svg" : "/strpast.svg"}
+            alt="arrow"
+            width={24}
+            height={24}
+            style={{
+              marginLeft: "6px",
+              cursor: "pointer",
+              transition: "transform 0.3s ease",
             }}
-            fontSize="large"
+            onClick={() => setOpen(!open)}
           />
         </Box>
       </Box>
@@ -171,169 +184,211 @@ export default function TripItem({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            width: "80%",
+            width: "100%",
+            height: "24px",
           }}
         >
-          <Typography
-            sx={{ fontWeight: 700, fontSize: "16px", color: "#A9B7BD" }}
-          >
-            ID выезда
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              mx: 1,
-              display: "flex",
-              alignItems: "center",
-              fontWeight: 700,
-              fontSize: "16px",
-              color: "#A9B7BD",
-            }}
-          >
-            ID выезда
-            <ContentCopyIcon
+          <Box sx={{ width: "50%" }}>
+            <Typography
+              sx={{ fontWeight: 700, fontSize: "16px", color: "#A9B7BD" }}
+            >
+              ID выезда
+            </Typography>
+          </Box>
+          <Box sx={{ width: "50%" }}>
+            <Typography
+              variant="h6"
               sx={{
-                color: "#7C69F4",
-                ml: 1,
+                display: "flex",
+                alignItems: "center",
+                fontWeight: 700,
                 fontSize: "16px",
+                color: "#A9B7BD",
               }}
-            />
-          </Typography>
+            >
+              ID выезда
+              <ContentCopyIcon
+                sx={{
+                  color: "#7C69F4",
+                  ml: 1,
+                  fontSize: "18px",
+                }}
+              />
+            </Typography>
+          </Box>
         </Box>
 
         {/* Umumiy statistikalar */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5, mt: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            mt: 1,
+            maxWidth: "337px",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              width: "80%",
+              width: "100%",
+              height: "24px",
             }}
           >
-            <Typography
-              variant="caption"
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 500 }}
-            >
-              Кол-во адресов:
-            </Typography>
-            <Typography
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 700 }}
-            >
-              {total.numbers_adress}
-            </Typography>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                variant="caption"
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 500 }}
+              >
+                Кол-во адресов
+              </Typography>
+            </Box>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 700 }}
+              >
+                {total.numbers_adress}
+              </Typography>
+            </Box>
           </Box>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              width: "80%",
+              width: "100%",
+              height: "24px",
             }}
           >
-            <Typography
-              variant="caption"
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 500 }}
-            >
-              Кол-во товаров:
-            </Typography>
-            <Typography
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 700 }}
-            >
-              {total.number_products}
-            </Typography>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                variant="caption"
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 500 }}
+              >
+                Кол-во товаров
+              </Typography>
+            </Box>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 700 }}
+              >
+                {total.number_products}
+              </Typography>
+            </Box>
           </Box>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              width: "80%",
+              width: "100%",
+              height: "24px",
             }}
           >
-            <Typography
-              variant="caption"
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 500 }}
-            >
-              Получено:
-            </Typography>
-            <Typography
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 700 }}
-            >
-              {total.accepted}
-            </Typography>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                variant="caption"
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 500 }}
+              >
+                Получено
+              </Typography>
+            </Box>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 700 }}
+              >
+                {total.accepted}
+              </Typography>
+            </Box>
           </Box>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              width: "80%",
+              width: "100%",
+              height: "24px",
             }}
           >
-            <Typography
-              variant="caption"
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 500 }}
-            >
-              Осталось получить:
-            </Typography>
-            <Typography
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 700 }}
-            >
-              {total.rest}
-            </Typography>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                variant="caption"
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 500 }}
+              >
+                Осталось получить
+              </Typography>
+            </Box>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 700 }}
+              >
+                {total.rest}
+              </Typography>
+            </Box>
           </Box>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              width: "80%",
+              width: "100%",
+              height: "24px",
             }}
           >
-            <Typography
-              variant="caption"
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 500 }}
-            >
-              Не получил:
-            </Typography>
-            <Typography
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 700 }}
-            >
-              {total.getnot}
-            </Typography>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                variant="caption"
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 500 }}
+              >
+                Не получил
+              </Typography>
+            </Box>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 700 }}
+              >
+                {total.getnot}
+              </Typography>
+            </Box>
           </Box>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              width: "80%",
+              width: "100%",
+              height: "24px",
             }}
           >
-            <Typography
-              variant="caption"
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 500 }}
-            >
-              Передал на склад:
-            </Typography>
-            <Typography
-              color="#A9B7BD"
-              sx={{ fontSize: "16px", fontWeight: 700 }}
-            >
-              {total.delivered_count}
-            </Typography>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                variant="caption"
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 500 }}
+              >
+                Передал на склад
+              </Typography>
+            </Box>
+            <Box sx={{ width: "50%" }}>
+              <Typography
+                color="#A9B7BD"
+                sx={{ fontSize: "16px", fontWeight: 700 }}
+              >
+                {total.delivered_count}
+              </Typography>
+            </Box>
           </Box>
         </Box>
 
@@ -348,8 +403,9 @@ export default function TripItem({
               borderRadius: "10px",
               color: "#FDF2F2",
               height: "45px",
-              py: "12px",
-              width: "190px",
+              padding: "12px 24px",
+              width: "162.5px",
+              whiteSpace: "nowrap",
             }}
             onClick={(e) => {
               e.stopPropagation();
@@ -367,10 +423,11 @@ export default function TripItem({
               textTransform: "none",
               borderRadius: "10px",
               color: "#FDF2F2",
-              width: "50%",
+              width: "162.5px",
               height: "45px",
               py: "12px",
               px: "24px",
+              whiteSpace: "nowrap",
             }}
             fullWidth
             onClick={(e) => {

@@ -18,6 +18,7 @@ const theme = createTheme({
     },
   },
   typography: {
+    fontFamily: "'Red Hat Text', sans-serif", // 🟢 MUHIM QO‘SHILGAN QATOR
     allVariants: {
       textTransform: "none",
     },

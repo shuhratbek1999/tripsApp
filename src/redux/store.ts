@@ -4,6 +4,7 @@ import authReducer from "./authSlice";
 import productReducer from "./productSlice";
 import problemReducer from "./problemSlice";
 import alertReducer from "./alertSlice";
+import ProductsReducer from "./productsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     product: productReducer,
     problem: problemReducer,
     alert: alertReducer,
+    products: ProductsReducer,
   },
 });
 

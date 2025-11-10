@@ -23,17 +23,21 @@ const ConfirmAddressPage = () => {
     >
       {/* Logo text */}
       <Box sx={{ width: "100%", mb: 2, ml: -2 }}>
-        <img src="/logo-trips.svg" alt="Logo trips" />
+        <img src="/logo-trips.svg" alt="Logo trips" width={101} height={44} />
       </Box>
 
       {/* Back + Address */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
-        <ArrowBackIosNewIcon
-          fontSize="large"
-          sx={{ color: "#7C69F4", ml: -1 }}
+        <img
+          src="/exit.svg"
+          alt="exit img"
+          width={12.9}
+          height={24}
           onClick={() => router.back()}
         />
-        <Typography sx={{ fontWeight: 500 }}>{address.address}</Typography>
+        <Typography sx={{ fontWeight: 500, ml: 1 }}>
+          {address.address}
+        </Typography>
       </Box>
 
       {/* Button */}
@@ -41,12 +45,14 @@ const ConfirmAddressPage = () => {
         fullWidth
         onClick={() => router.push("/address/data")}
         sx={{
-          backgroundColor: "#B34EF1",
-          color: "#fff",
-          fontWeight: 600,
-          borderRadius: 1.5,
+          backgroundColor: "#CB30E0",
+          color: "#FDF2F2",
+          fontWeight: 500,
+          borderRadius: "10px",
+          height: "45px",
           textTransform: "none",
-          py: 1,
+          padding: "12px 24px",
+          fontSize: "16px",
         }}
       >
         Я на адресе

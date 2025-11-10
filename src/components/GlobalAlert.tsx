@@ -30,14 +30,19 @@ export default function GlobalAlert() {
       case "success":
         return {
           bg: "#2E7D32",
-          icon: <CheckCircleIcon sx={{ color: "white" }} />,
+          icon: (
+            <img src={"/success.svg"} alt="success" width={24} height={24} />
+          ),
         };
       case "error":
-        return { bg: "#C62828", icon: <CancelIcon sx={{ color: "white" }} /> };
+        return {
+          bg: "#EB5757E5",
+          icon: <img src={"/error.svg"} alt="error" width={24} height={24} />,
+        };
       case "warning":
         return {
           bg: "#EF6C00",
-          icon: <WarningAmberIcon sx={{ color: "white" }} />,
+          icon: <img src={"/error.svg"} alt="error" width={24} height={24} />,
         };
       default:
         return { bg: "#424242", icon: <InfoIcon sx={{ color: "white" }} /> };
@@ -55,13 +60,14 @@ export default function GlobalAlert() {
         bgcolor: bg,
         color: "white",
         borderRadius: "12px",
-        p: 2,
+        py: "12px",
+        px: "20px",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        gap: 1,
-        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+        gap: 2,
+        boxShadow: "0 0 32px rgba(0,0,0,0.6)",
         width: "100%",
+        minHeight: "60px",
         animation: "fadeIn 0.3s ease-in-out",
         "@keyframes fadeIn": {
           from: { opacity: 0, transform: "translateY(-10px)" },

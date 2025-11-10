@@ -11,6 +11,8 @@ import {
   InputAdornment,
   Collapse,
 } from "@mui/material";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -18,7 +20,7 @@ import { useState } from "react";
 
 export default function ZakazPage() {
   const router = useRouter();
-  const trips = useSelector((state: RootState) => state.trips.trips); // ✅ hamma trips
+  const trips = useSelector((state: RootState) => state.trips.trips);
 
   const [openCluster, setOpenCluster] = useState<string | null>(null);
   const [openAddress, setOpenAddress] = useState<number | null>(null);
@@ -34,7 +36,7 @@ export default function ZakazPage() {
   return (
     <Box
       sx={{
-        bgcolor: "#0F0F10",
+        bgcolor: "#1E1E1E",
         minHeight: "100vh",
         p: 2,
         color: "white",
@@ -47,9 +49,11 @@ export default function ZakazPage() {
 
       {/* Back + Address */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
-        <ArrowBackIosNewIcon
-          fontSize="large"
-          sx={{ color: "#7C69F4", ml: -1 }}
+        <img
+          src="/exit.svg"
+          alt="exit img"
+          width={12.9}
+          height={24}
           onClick={() => router.back()}
         />
         <Typography
@@ -58,6 +62,7 @@ export default function ZakazPage() {
           25.10.2025 ID 1231231
         </Typography>
       </Box>
+
       <TextField
         fullWidth
         placeholder="Найти ПВЗ или КЛСТР"
@@ -81,6 +86,7 @@ export default function ZakazPage() {
           "& input::placeholder": { color: "#A9B7BD", opacity: 0.8 },
         }}
       />
+
       {/* COPY BUTTON */}
       <Button
         fullWidth
@@ -100,7 +106,8 @@ export default function ZakazPage() {
       >
         Скопировать адреса
       </Button>
-      {/* CLUSTERS FROM ALL TRIPS */}
+
+      {/* CLUSTERS */}
       {trips.map((trip) =>
         trip.details.map((cluster) => {
           const clusterKey = `${trip.id}-${cluster.clusterName}`;
@@ -194,32 +201,61 @@ export default function ZakazPage() {
                           setOpenAddress(isOpenAddress ? null : addr.id)
                         }
                       >
-                        <Typography
+                        <Box
                           sx={{
-                            fontSize: 16,
-                            fontWeight: 700,
-                            color: "#A9B7BD",
+                            display: "flex",
+                            alignItems: "center",
                             maxWidth: "80%",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
                           }}
                         >
-                          {addr.address}
-                        </Typography>
-                        <KeyboardArrowDownIcon
-                          sx={{
-                            color: statusColor,
-                            transform: isOpenAddress
-                              ? "rotate(180deg)"
-                              : "rotate(0deg)",
-                            transition: "0.3s",
-                          }}
-                          fontSize="large"
-                        />
-                        {allReceived}
+                          <Typography
+                            sx={{
+                              fontSize: 16,
+                              fontWeight: 700,
+                              color: "#A9B7BD",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {addr.address}
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                        >
+                          <ContentCopyIcon
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigator.clipboard.writeText(addr.address);
+                            }}
+                            sx={{
+                              ml: 1,
+                              color: "#7C69F4",
+                              fontSize: 22,
+                              cursor: "pointer",
+                              transition: "0.2s",
+                              transform: "scaleX(-1)", // 🔄 teskari aylantirish
+                              "&:hover": {
+                                color: "#6A56E0",
+                                transform: "scaleX(-1) scale(1.1)",
+                              },
+                            }}
+                          />
+                          <KeyboardArrowDownIcon
+                            sx={{
+                              color: statusColor,
+                              transform: isOpenAddress
+                                ? "rotate(180deg)"
+                                : "rotate(0deg)",
+                              transition: "0.3s",
+                            }}
+                            fontSize="large"
+                          />
+                        </Box>
                       </Box>
 
-                      {/* 🟢 STATUS TEXT — har bir adres tagida */}
+                      {/* 🟢 STATUS TEXT — doimiy ko‘rinadi */}
                       {statusText && (
                         <Typography
                           sx={{
@@ -256,28 +292,40 @@ export default function ZakazPage() {
                                   display: "flex",
                                   justifyContent: "space-between",
                                   alignItems: "center",
-                                  width: "85%",
+                                  width: "100%",
                                   mb: 0.3,
+                                  height: "18px",
                                 }}
                               >
-                                <Typography
+                                <Box sx={{ width: "50%" }}>
+                                  <Typography
+                                    sx={{
+                                      fontSize: "14px",
+                                      color: "#A9B7BD",
+                                      fontWeight: 500,
+                                    }}
+                                  >
+                                    {label}
+                                  </Typography>
+                                </Box>
+                                <Box
                                   sx={{
-                                    fontSize: "14px",
-                                    color: "#A9B7BD",
-                                    fontWeight: 500,
+                                    width: "50%",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "center",
                                   }}
                                 >
-                                  {label}
-                                </Typography>
-                                <Typography
-                                  sx={{
-                                    fontSize: "14px",
-                                    color: "#A9B7BD",
-                                    fontWeight: 600,
-                                  }}
-                                >
-                                  {value}
-                                </Typography>
+                                  <Typography
+                                    sx={{
+                                      fontSize: "14px",
+                                      color: "#A9B7BD",
+                                      fontWeight: 600,
+                                    }}
+                                  >
+                                    {value}
+                                  </Typography>
+                                </Box>
                               </Box>
                             ))}
 
